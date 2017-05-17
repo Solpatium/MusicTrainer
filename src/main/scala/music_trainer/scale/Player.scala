@@ -7,6 +7,7 @@ import js.JSConverters._
 import org.scalajs.dom.raw.Blob
 import org.scalajs.dom.raw.URL
 import org.scalajs.dom.raw.BlobPropertyBag
+import scala.scalajs.js.timers._
 
 
 class Player(val instrument: Instrument,
@@ -24,6 +25,23 @@ class Player(val instrument: Instrument,
             generate(sound)
         
         playWav( Player.cached(key) )
+    }
+
+    def play(track: Track) {
+        // Make sure all sounds are generated already, there can be no delay
+        for( (_,  sounds) <- track.sounds ) {
+            sounds foreach maybeGenerate
+        }
+
+        // We need to set a timeout to play sounds with a delay
+        for( (time,  sounds) <- track.sounds ) setTimeout(time*1000) {
+            sounds foreach play
+        }
+    }
+
+    def maybeGenerate(sound: Sound) {
+        if( !Player.cached.contains((instrument, sound)) )
+            generate(sound)
     }
 
     def generate(sound: Sound) {

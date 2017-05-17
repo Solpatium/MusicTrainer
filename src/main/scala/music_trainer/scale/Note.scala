@@ -1,4 +1,5 @@
 package scale
+
 import scala.collection.immutable.HashMap
 
 object Note extends Enumeration {
