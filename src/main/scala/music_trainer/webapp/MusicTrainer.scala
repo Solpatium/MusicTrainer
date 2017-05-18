@@ -2,11 +2,7 @@ package tutorial.webapp
 
 import org.scalajs.jquery.jQuery
 import scala.scalajs.js.JSApp
-import scale.Note
-import scale.Sound
-import scale.Player
-import scale.Piano
-import scale.Track
+import scale._
 
 object MusicTrainer extends JSApp {
   def main(): Unit = {
@@ -17,6 +13,13 @@ object MusicTrainer extends JSApp {
     val $notes = jQuery("#notes")
     val $octave = jQuery("#octave")
     val $octavePlayer = jQuery("#whole-octave")
+    val $instrument = jQuery("#instrument")
+
+    var player = new Player(Piano, volumeMultiplier=0.7)
+    $instrument change (() => {
+      val instrument = if($instrument.value().asInstanceOf[String] == "Piano") Piano else Organ
+      player = new Player(instrument, volumeMultiplier=0.7)
+    })
 
     var octave = 4
     $octave change (() => {
@@ -25,7 +28,6 @@ object MusicTrainer extends JSApp {
 
 
     val length = 2
-    val player = new Player(Piano)
     // Playing single note
     for( note <- Note.values ) {
       val name = note.toString. replaceAllLiterally("$hash", "#")

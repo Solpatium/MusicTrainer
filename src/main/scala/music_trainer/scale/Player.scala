@@ -61,7 +61,7 @@ class Player(val instrument: Instrument,
 
         }
 
-        for (i <- 0 to decayLen.toInt) {
+        for (i <- attackLen.toInt to decayLen.toInt) {
 
             value = volume * Math.pow((1-((i-(sampleRate*attack))/(sampleRate*(sound.duration-attack)))),dampen) * instrument.wave(i, sampleRate, frequency)
 
