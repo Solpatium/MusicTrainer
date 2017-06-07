@@ -1,10 +1,7 @@
-package scale
+package music_trainer.scale
 
-import org.scalajs.dom.raw.Blob
-import scala.scalajs.js
-import scala.scalajs.js.Math
-import scale.Note._
+case class Sound private (note: Note.Value, octave: Int, duration: Float) {
+  def this(note: Note, duration: Float) = this(note.note, note.octave, duration)
 
-case class Sound private (val note: Note, octave: Int, val duration: Float) {
-  def frequency() = Note.frequency(note)
+  def frequency():Double = Note.frequency(note)
 }

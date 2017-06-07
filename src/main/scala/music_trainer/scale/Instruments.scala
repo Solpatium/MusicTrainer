@@ -1,4 +1,4 @@
-package scale
+package music_trainer.scale
 
 import scala.scalajs.js.Math
 
