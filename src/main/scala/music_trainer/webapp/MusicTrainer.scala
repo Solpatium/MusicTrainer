@@ -1,6 +1,6 @@
 package music_trainer.webapp
 
-import music_trainer.scale.Exercises.DualIntervalExcercise
+import music_trainer.scale.Exercises.{Answer, DualIntervalExcercise}
 import music_trainer.scale.Track
 import org.scalajs.jquery.jQuery
 
@@ -56,7 +56,12 @@ object MusicTrainer extends JSApp {
     $exercise click (() => {
       val exercise = new DualIntervalExcercise(player)
       exercise.play()
-      println(exercise.getAnswers)
+      import DualIntervalExcercise.{ANSWER_BOTTOM_NAME, ANSWER_TOP_NAME}
+      println(ANSWER_TOP_NAME + ": " +
+//        This is how you get correct, human-Readable answer
+        exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+      println(ANSWER_BOTTOM_NAME + ": " + 
+        exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
     })
   }
 }
