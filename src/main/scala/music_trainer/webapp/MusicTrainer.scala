@@ -1,8 +1,11 @@
-package tutorial.webapp
+package music_trainer.webapp
 
+import music_trainer.scale.Exercises.DualIntervalExcercise
+import music_trainer.scale.Track
 import org.scalajs.jquery.jQuery
+
 import scala.scalajs.js.JSApp
-import scale._
+import music_trainer.scale._
 
 object MusicTrainer extends JSApp {
   def main(): Unit = {
@@ -14,6 +17,7 @@ object MusicTrainer extends JSApp {
     val $octave = jQuery("#octave")
     val $octavePlayer = jQuery("#whole-octave")
     val $instrument = jQuery("#instrument")
+    val $exercise = jQuery("#simple-exercise")
 
     var player = new Player(Piano, volumeMultiplier=0.7)
     $instrument change (() => {
@@ -25,7 +29,6 @@ object MusicTrainer extends JSApp {
     $octave change (() => {
       octave = $octave.value().asInstanceOf[Int]
     })
-
 
     val length = 2
     // Playing single note
@@ -49,6 +52,11 @@ object MusicTrainer extends JSApp {
         time += 0.8
       }
       player play track
+    })
+    $exercise click (() => {
+      val exercise = new DualIntervalExcercise(player)
+      exercise.play()
+      println(exercise.getAnswers)
     })
   }
 }

@@ -1,4 +1,4 @@
-package scale
+package music_trainer.scale
 
 import scala.scalajs.js
 import scala.collection.mutable.HashMap
@@ -7,6 +7,7 @@ import js.JSConverters._
 import org.scalajs.dom.raw.Blob
 import org.scalajs.dom.raw.URL
 import org.scalajs.dom.raw.BlobPropertyBag
+
 import scala.scalajs.js.timers._
 
 
