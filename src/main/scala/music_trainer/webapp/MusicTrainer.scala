@@ -1,6 +1,6 @@
 package music_trainer.webapp
 
-import music_trainer.scale.Exercises.{Answer, DualIntervalExcercise}
+import music_trainer.scale.Exercises.{Answer, DualIntervalExcercise, SingleIntervalExercise}
 import music_trainer.scale.Track
 import org.scalajs.jquery.jQuery
 
@@ -17,7 +17,8 @@ object MusicTrainer extends JSApp {
     val $octave = jQuery("#octave")
     val $octavePlayer = jQuery("#whole-octave")
     val $instrument = jQuery("#instrument")
-    val $exercise = jQuery("#simple-exercise")
+    val $dualExercise = jQuery("#dual-exercise")
+    val $singleExercise = jQuery("#single-exercise")
 
     var player = new Player(Piano, volumeMultiplier=0.7)
     $instrument change (() => {
@@ -53,7 +54,8 @@ object MusicTrainer extends JSApp {
       }
       player play track
     })
-    $exercise click (() => {
+
+    $dualExercise click (() => {
       val exercise = new DualIntervalExcercise(player)
       exercise.play()
       import DualIntervalExcercise.{ANSWER_BOTTOM_NAME, ANSWER_TOP_NAME}
@@ -62,6 +64,12 @@ object MusicTrainer extends JSApp {
         exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
       println(ANSWER_BOTTOM_NAME + ": " + 
         exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+    })
+
+    $singleExercise click(() => {
+      val exercise = new SingleIntervalExercise(player)
+      exercise.play()
+      println(SingleIntervalExercise.ANSWER + ": " + exercise.getAnswers(SingleIntervalExercise.ANSWER).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
     })
   }
 }
