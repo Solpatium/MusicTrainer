@@ -5,7 +5,7 @@ import scala.collection.mutable
 
 // Class used for playing multiple sounds at specific time
 class Track {
-    val sounds : mutable.TreeMap[Double, Set[Sound]] = new mutable.TreeMap()
+    val sounds : mutable.ListMap[Double, Set[Sound]] = new mutable.ListMap()
 
     def add(time: Double, sound: Sound) {
         val set = if ( sounds.contains(time) ) sounds(time) else new HashSet[Sound]()
@@ -14,6 +14,6 @@ class Track {
 
     def add(time: Double, note: Note.Value, octave: Int, duration: Float) {
         val sound = Sound(note, octave, duration)
-        add(time, sound) 
+        add(time, sound)
     }
 }

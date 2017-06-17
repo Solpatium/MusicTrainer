@@ -12,19 +12,19 @@ import scala.scalajs.js.timers._
 
 
 class Player(val instrument: Instrument,
-             val volumeMultiplier: Double = 0.6, 
+             val volumeMultiplier: Double = 0.6,
              val channels: Int = 1,
              val sampleRate: Int = 44100,
              val bitsPerSample: Int = 16) extends Wav {
-    
+
     val MAX_VOLUME = 32768
     val volume = MAX_VOLUME*volumeMultiplier
-    
+
     def play(sound: Sound) {
         val key = (instrument, sound)
         if( !Player.cached.contains(key) )
             generate(sound)
-        
+
         playWav( Player.cached(key) )
     }
 
@@ -89,16 +89,16 @@ trait Wav {
     }
 
     private def uint8array(numbers: Int*)  = new Uint8Array(js.Array(numbers: _*))
-    
+
     def wav(channels: Int, sampleRate: Int, bitsPerSample: Int, data: Uint8Array ) = {
             // TODO: Make more readable
 	        // def pack(c,arg){ return [new Uint8Array([arg, arg >> 8]), new Uint8Array([arg, arg >> 8, arg >> 16, arg >> 24])][c]; };
             def pack(c: Int, arg: Int) : Uint8Array = {
                 // short syntax doesn't work for some reason
                 // ';' expected but 'if' found.
-                if (c == 0) 
-                    return uint8array(arg, arg >> 8) 
-                else 
+                if (c == 0)
+                    return uint8array(arg, arg >> 8)
+                else
                     return uint8array(arg, arg >> 8, arg >> 16, arg >> 24)
             }
 
@@ -125,5 +125,5 @@ trait Wav {
 
     def playWav(wavURL: String) {
         js.Dynamic.newInstance(js.Dynamic.global.Audio)(wavURL).play()
-    }  
+    }
 }

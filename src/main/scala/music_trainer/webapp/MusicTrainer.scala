@@ -2,6 +2,30 @@ package music_trainer.webapp
 
 import music_trainer.scale.Exercises.{Answer, DualIntervalExcercise}
 import music_trainer.scale.Track
+
+import angulate2.std._
+import angulate2.platformBrowser.BrowserModule
+
+
+@NgModule(
+  imports = @@[BrowserModule],
+  declarations = @@[AppComponent],
+  bootstrap = @@[AppComponent]
+)
+class AppModule {
+
+}
+
+@Component(
+  selector = "my-app",
+  template = "<h1>Hello Angular LOL!<h1>"
+)
+class AppComponent {
+
+}
+
+
+ /*
 import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js.JSApp
@@ -60,8 +84,9 @@ object MusicTrainer extends JSApp {
       println(ANSWER_TOP_NAME + ": " +
 //        This is how you get correct, human-Readable answer
         exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
-      println(ANSWER_BOTTOM_NAME + ": " + 
+      println(ANSWER_BOTTOM_NAME + ": " +
         exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
     })
   }
 }
+// */

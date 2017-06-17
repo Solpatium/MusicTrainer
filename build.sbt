@@ -1,8 +1,11 @@
 enablePlugins(ScalaJSPlugin)
+enablePlugins(Angulate2Plugin)
+
 libraryDependencies += "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
 
-name := "Scala.js Tutorial"
-scalaVersion := "2.12.2" // or any other Scala version >= 2.10.2
+resolvers += Resolver.sonatypeRepo("snapshots")
 
-// This is an application with a main method
-scalaJSUseMainModuleInitializer := true
+name := "music-trainer"
+scalaVersion := "2.11.8" // or any other Scala version >= 2.10.2
+
+ngBootstrap := Some("music_trainer.webapp.AppModule")
