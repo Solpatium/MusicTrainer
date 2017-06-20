@@ -2,14 +2,16 @@ package music_trainer.webapp
 
 import music_trainer.scale.Exercises.{Answer, DualIntervalExcercise}
 import music_trainer.scale.Track
+import music_trainer.scale._
 
 import angulate2.std._
 import angulate2.platformBrowser.BrowserModule
 
+import music_trainer.webapp.component._
 
 @NgModule(
   imports = @@[BrowserModule],
-  declarations = @@[AppComponent],
+  declarations = @@[AppComponent,ButtonComponent,ExerciseList,ExerciseItem],
   bootstrap = @@[AppComponent]
 )
 class AppModule {
@@ -18,10 +20,32 @@ class AppModule {
 
 @Component(
   selector = "my-app",
-  template = "<h1>Hello Angular LOL!<h1>"
+  template = "<h1>Hello Angular LOL!<my-button></my-button></h1><exercise-list></exercise-list>"
 )
 class AppComponent {
 
+}
+
+@Component(
+  selector = "my-button",
+  template = "<button (click)=\"clk()\">Play whole octave using track</button>"
+)
+class ButtonComponent {
+  var player = new Player(Piano, volumeMultiplier=0.7)
+  val length = 2
+  var octave = 4
+
+  def clk(){
+    val track = new Track()
+    var time = 0.0
+    for( note <- Note.values ) {
+      track.add(time, Sound(note, octave, length))
+      // Uncomment this to play 2 sounds at the same time
+      // track.add(time, Sound(Note.A, octave, length))
+      time += 0.8
+    }
+    player play track
+  }
 }
 
 

@@ -6,11 +6,11 @@ body {
     color: white;
     letter-spacing: 1px;
     background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#2fbcc1, #5ec598); /* Standard syntax */
-    background: linear-gradient(241deg, #148283, #48b69e, #59cdce);
+    /*background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
+    /*background: linear-gradient(#2fbcc1, #5ec598); /* Standard syntax */
+    /*background: linear-gradient(241deg, #148283, #48b69e, #59cdce); /**/
     background-size: 600% 600%;
     -webkit-animation: bacground 10s ease infinite;
     -moz-animation: bacground 10s ease infinite;
@@ -29,7 +29,7 @@ body {
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
 }
-@keyframes bacground { 
+@keyframes bacground {
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
@@ -63,7 +63,7 @@ select, button {
    transition: background-color 1s, color 0.5s;
 }
 
-select:hover, 
+select:hover,
 button:hover {
     background-color: white;
     color: #373838;
@@ -96,7 +96,7 @@ button:hover {
     color: #ffffff;
 }
 
-header { 
+header {
     position: relative;
     padding: 20px 0;
 /*     border-bottom: dashed white 5px;  */
@@ -110,7 +110,7 @@ header {
 
 /* LIST */
 #exercises-list {
-    padding: 0;   
+    padding: 0;
 }
 .exercise {
     display: block;
@@ -142,12 +142,15 @@ header {
 }
 
 .exercise .hardness-easy:before {
-    content: "☆☆";
+    content: "☆☆★";
 }
 .exercise .hardness-medium:before {
-    content: "☆";
+    content: "☆★★";
 }
-/* 
+.exercise .hardness-hard:before {
+    content: "★★★";
+}
+/*
 .exercise:not(:last-child):after {
     content: "";
     margin: 50px 0 0 0;
