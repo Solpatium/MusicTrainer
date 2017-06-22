@@ -1,6 +1,6 @@
 package music_trainer.webapp
 
-import music_trainer.scale.Exercises.{Answer, DualIntervalExcercise, SingleIntervalExercise}
+import music_trainer.scale.Exercises.{Answer, BaseSquareIntervalExercise, DualIntervalExcercise, SingleIntervalExercise}
 import music_trainer.scale.Track
 import org.scalajs.jquery.jQuery
 
@@ -19,6 +19,7 @@ object MusicTrainer extends JSApp {
     val $instrument = jQuery("#instrument")
     val $dualExercise = jQuery("#dual-exercise")
     val $singleExercise = jQuery("#single-exercise")
+    val $squareExercise = jQuery("#square-exercise")
 
     var player = new Player(Piano, volumeMultiplier=0.7)
     $instrument change (() => {
@@ -70,6 +71,14 @@ object MusicTrainer extends JSApp {
       val exercise = new SingleIntervalExercise(player)
       exercise.play()
       println(SingleIntervalExercise.ANSWER + ": " + exercise.getAnswers(SingleIntervalExercise.ANSWER).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+    })
+
+    $squareExercise click (() => {
+      val exercise = new BaseSquareIntervalExercise(player)
+      exercise.play()
+      for (answer <- exercise.getAnswers.keys) {
+        println(answer + ": " + exercise.getAnswers(answer).filter(_.isCorrect).map(ans => Answer.getHumanReadAble(ans.interval)).head)
+      }
     })
   }
 }

@@ -14,7 +14,9 @@ class BaseSquareIntervalExercise(val player: Player) extends Exercise {
   private val melodicIntervalNum:List[Int] = Random.nextInt(24) - 12 :: Random.nextInt(24) - 12 :: Nil
   var firstInterval: (Note, Note) = generateInterval(melodicIntervalNum.head)
   var secondInterval: (Note, Note) = generateInterval(melodicIntervalNum(1), firstInterval._1.octave :: firstInterval._2.octave :: Nil)
-  private val harmonicIntervalNum = getInterval(firstInterval._1, secondInterval._1) :: getInterval(firstInterval._2, secondInterval._2) :: Nil
+  private val harmonicIntervalNum =
+    ExerciseHelper.getSimpleInterval(firstInterval._1, secondInterval._1) ::
+      ExerciseHelper.getSimpleInterval(firstInterval._2, secondInterval._2) :: Nil
   var track:Track = generateTrack()
 
   /**
@@ -41,8 +43,6 @@ class BaseSquareIntervalExercise(val player: Player) extends Exercise {
     }
     answers
   }
-
-  private def getInterval(note1:Note, note2:Note): Int = math.abs(note1.octave * 12 + Note.toInt(note2.note) - (note2.octave * 12 + Note.toInt(note2.note))) % 12
 
   private def generateInterval(interval:Int, takenOctaves:List[Int] = List()): (Note, Note) = {
     val firstNote = ExerciseHelper generateRandomNote takenOctaves

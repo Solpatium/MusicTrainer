@@ -92,6 +92,9 @@ object ExerciseHelper {
     var correctIntervalAbs = math.abs(correctInterval)
     (for (i <- 0 to answerRange) yield if(i == correctIntervalAbs) new Answer(i, true) else new Answer(i,false))(collection.breakOut)
   }
+
+  def getSimpleInterval(note1:Note, note2:Note): Int = math.abs(Note.toInt(note1.note) - Note.toInt(note2.note)) % 12
+
 }
 
 
