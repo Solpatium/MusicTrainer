@@ -9,7 +9,7 @@ import scala.util.Random
 /**
   * DualIntervalPlayer is an implementation for Exercise - simple excercise with 2 intervals played simultanously
  *
-  * @param player - with this player the excercise will be played
+  * @param player - with this player the exercise will be played
   */
 case class DualIntervalExcercise(player:Player) extends Exercise {
   import DualIntervalExcercise._

@@ -27,6 +27,7 @@ trait Exercise {
 }
 
 class Answer(var interval:Int, var isCorrect:Boolean){
+  override def toString: String = Answer.getHumanReadAble(interval)
 }
 object Answer{
   val getHumanReadAble:mutable.Map[Int,String] = mutable.Map(
