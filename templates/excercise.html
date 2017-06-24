@@ -1,0 +1,59 @@
+<html lang="pl">
+  <head>
+    <title>Sound trainer - menu</title>
+    <meta charset="utf-8">
+    <meta content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,400i,500&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    </style>
+  </head>
+  <body>
+    <div id="content-wrapper">
+      <header>
+        <img id="logo" src="note.png">
+        
+        <h3 id="stage-title">Kwadrat w kole oktawy</h3>
+        <h4 id="stage-subtitle">Wybierz prawidłowe odpowiedzi</h4>
+        <div id="settings">
+          <select id="instrument">
+            <option value="piano" selected>Pianino</option>
+          </select>
+        </div>
+      </header>
+      <div id="content">
+        <div id="score">
+          <span class="current-score">10</span>/<span class="max-score">20</span>
+        </div>
+        <div id="player-wrapper">
+          <button id="player">Odtwórz</button>
+        </div>
+        <ul class="list answers validated">
+          <li class="container answer-wrapper">
+             <input class="hidden-radio" type="radio" name="answer-1" id="answer-1-1"><label for="answer-1-1" class="button answer good">A</label>
+             <input class="hidden-radio" type="radio" name="answer-1" id="answer-1-2"><label for="answer-1-2" class="button answer">B</label>
+             <input class="hidden-radio" type="radio" name="answer-1" id="answer-1-3"><label for="answer-1-3" class="button answer">C</label>
+             <input class="hidden-radio" type="radio" name="answer-1" id="answer-1-4"><label for="answer-1-4" class="button answer">D</label>
+             <input class="hidden-radio" type="radio" name="answer-1" id="answer-1-5"><label for="answer-1-5" class="button answer">E</label>
+          </li>
+          <li class="container answer-wrapper">
+             <input class="hidden-radio" type="radio" name="answer-2" id="answer-2-1"><label for="answer-2-1" class="button answer">A</label>
+             <input class="hidden-radio" type="radio" name="answer-2" id="answer-2-2"><label for="answer-2-2" class="button answer good">B</label>
+             <input class="hidden-radio" type="radio" name="answer-2" id="answer-2-3"><label for="answer-2-3" class="button answer">C</label>
+             <input class="hidden-radio" type="radio" name="answer-2" id="answer-2-4"><label for="answer-2-4" class="button answer">D</label>
+             <input class="hidden-radio" type="radio" name="answer-2" id="answer-2-5"><label for="answer-2-5" class="button answer">E</label>
+          </li>
+          <li class="container answer-wrapper">
+             <input class="hidden-radio" type="radio" name="answer-3" id="answer-3-1"><label for="answer-3-1" class="button answer">A</label>
+             <input class="hidden-radio" type="radio" name="answer-3" id="answer-3-2"><label for="answer-3-2" class="button answer">B</label>
+             <input class="hidden-radio" type="radio" name="answer-3" id="answer-3-3"><label for="answer-3-3" class="button answer">C</label>
+             <input class="hidden-radio" type="radio" name="answer-3" id="answer-3-4"><label for="answer-3-4" class="button answer">D</label>
+             <input class="hidden-radio" type="radio" name="answer-3" id="anwear-1-5"><label for="answer-3-5" class="button answer good">E</label>
+          </li>
+        </ul>
+        <button class="button" id="validate-answers">Sprawdź</button>
+        <!--Po sprawdzeniu odpowiedzi zmienia się na next-->
+      </div>
+    </div>
+  </body>
+</html>

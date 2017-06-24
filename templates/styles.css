@@ -5,34 +5,30 @@ body {
     background-color: #000000;
     color: white;
     letter-spacing: 1px;
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#2fbcc1, #5ec598); /* Standard syntax */
-    background: linear-gradient(241deg, #148283, #48b69e, #59cdce);
     background-size: 600% 600%;
-    -webkit-animation: bacground 10s ease infinite;
-    -moz-animation: bacground 10s ease infinite;
-    animation: bacground 10s ease infinite;
+    -webkit-animation: bacground 20s infinite;
+    -moz-animation: bacground 20s infinite;
+    animation: bacground 20s alternate infinite;
     margin: 0;
     padding: 0;
 }
-
-@-webkit-keyframes bacground {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+@keyframes bacground { 
+    0%{background-color: #4dafda}
+    50%{background-color: #51caa1;}
+    100%{background-color: #ffc184}
 }
 @-moz-keyframes bacground {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+    0%{background-color: #4dafda}
+    50%{background-color: #51caa1;}
+    100%{background-color: #ffc184}
 }
-@keyframes bacground { 
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+
+a {
+    color: white !important;
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: dashed #ffffff 2px;
+    padding: 0 2px 3px 2px;
 }
 
 * {
@@ -46,7 +42,7 @@ body {
 }
 
 /*GENERAL*/
-select, button {
+select, button, .button {
    -webkit-appearance: none;
    -moz-appearance:    none;
    appearance:         none;
@@ -60,11 +56,20 @@ select, button {
    font-size: 16px;
    letter-spacing: 4px;
    font-weight: 900;
-   transition: background-color 1s, color 0.5s;
+   transition: background-color 1s, color 0.5s, border-color 1s;
+   display: inline-block;
+   min-width: 62px;
+   text-align: center;
+   outline: 0;
 }
 
+.hidden-radio {
+    display: none;
+} 
+
 select:hover, 
-button:hover {
+button:hover,
+.hidden-radio:checked + .button {
     background-color: white;
     color: #373838;
 }
@@ -112,7 +117,7 @@ header {
 #exercises-list {
     padding: 0;   
 }
-.exercise {
+.container {
     display: block;
     list-style: none;
     /*     border: solid white 1px; */
@@ -120,7 +125,7 @@ header {
     /*     background-color:#34bdbd; */
     /*     border-radius: 10px; */
     padding: 20px;
-/*     border-radius: 30px; */
+    /*     border-radius: 30px; */
     /*     -webkit-filter: blur(20px); */
     /*     -moz-filter: blur(20px); */
     /*     -o-filter: blur(20px); */
@@ -130,9 +135,11 @@ header {
     /*transition: border 1s;*/
     border-bottom: dashed 5px;
     border-bottom: solid 1px;
-    border: solid 5px;
+/*     border-top: solid 1px; */
+    /* border: solid 5px; */
     margin-bottom: 20px;
     position: relative;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .exercise .hardness {
@@ -147,16 +154,9 @@ header {
 .exercise .hardness-medium:before {
     content: "☆";
 }
-/* 
-.exercise:not(:last-child):after {
-    content: "";
-    margin: 50px 0 0 0;
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: white;
+.select-exercise {
+    float: right;
 }
- */
 .exercise:hover {
 /*     border-color: rgba(255, 255, 255, 0.48); */
 }
@@ -172,4 +172,40 @@ header {
 
 .exercise-content {
     margin-top: 0;
+}
+
+/* EXERCISE */
+#validate-answers {
+    margin: auto;
+    display: block; 
+}
+
+.answer-wrapper {
+    padding: 30px;
+    text-align: center;
+}
+
+.validated .hidden-radio:checked + .answer:not(.good) {
+    background-color: #ff7373;
+    border-color: #ff7373;
+    color: white;
+}
+
+.validated .answer.good {
+    background-color: #12da28;
+    border-color: #12da28;
+    color: white;
+}
+
+#score {
+    text-align: right;
+    font-size: 1.5em;
+}
+
+
+/*
+    PAGE
+*/
+#final-score {
+    font-size: 2.2em;
 }
