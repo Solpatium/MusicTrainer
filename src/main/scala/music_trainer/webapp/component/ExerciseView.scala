@@ -10,16 +10,19 @@ import angulate2.core.EventEmitter
 import scala.scalajs.js
 import js.annotation._
 
+import scala.collection.mutable
+
+
 @Component(
   selector = "exercise-view",
   template =
   """<div *ngIf="num != 0">
     |<h1>
-    |Exercise {{num}} {{numOfExercises}}
+    |Exercise {{num}} {{numOfExercises}} {{score}}
     |</h1>
-    |<answers-list [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
+    |<answers-list #answerslistid [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
     |<div><button (click)="playExercise()">Play</button></div>
-    |<button *ngIf="!isValidated" (click)="isValidated=true">Check</button>
+    |<button *ngIf="!isValidated" (click)="check()">Check</button>
     |<button *ngIf="isValidated" (click)="nextTask()">Next</button>
     |<button (click)="returnMenu.emit(0)">Menu</button>
     |</div>
@@ -29,6 +32,9 @@ class ExerciseView(){
   @Output
   var returnMenu = new EventEmitter[Int]()
 
+  @ViewChild("answerslistid")
+  var answersForm: AnswersList = _
+
   var num: Int = 0
   var numOfExercises: Int = 0
 
@@ -36,11 +42,13 @@ class ExerciseView(){
 
   var player = new Player(Piano, volumeMultiplier=0.7)
   var exercise: Exercise = new DualIntervalExcercise(player)
+  var score = 0
 
   var answersList: js.Array[AnswerOptions] = js.Array[AnswerOptions]()
 
   def changeExercise(newNum: Int, newNumOfExercises: Int){
     num = newNum
+    score = 0
     numOfExercises = newNumOfExercises
     nextTask()
   }
@@ -49,10 +57,26 @@ class ExerciseView(){
     num = 0
   }
 
+  def check(){
+    isValidated = true
+    val answersList = answersForm.getAnswer()
+    if(answersList.forall( a => a == Correctnes.Correct ))
+      score += 1
+  }
+
   def nextTask(){
     isValidated = false
+    if(answersForm != js.undefined) answersForm.resetAnswers()
     answersList = js.Array[AnswerOptions]()
     exercise = new DualIntervalExcercise(player)
+
+    import DualIntervalExcercise.{ANSWER_BOTTOM_NAME, ANSWER_TOP_NAME}
+    println(ANSWER_TOP_NAME + ": " +
+//        This is how you get correct, human-Readable answer
+      exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+    println(ANSWER_BOTTOM_NAME + ": " +
+      exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+
     val answers = exercise.getAnswers
     val answersName = answers.keys
     for(name <- answersName){
@@ -68,6 +92,11 @@ class ExerciseView(){
 
 }
 
+
+object Correctnes extends Enumeration{
+  type Correctnes = Value
+  val Correct, Unchecked, Wrong = Value
+}
 
 @ScalaJSDefined
 trait AnswerOptions extends js.Object {
@@ -88,12 +117,12 @@ object AnswerOptions {
   template =
   """<div>
     |<ul [ngClass]="{'list': 1, 'answers': 1, 'validated': isValidated }">
-    |<answer-box *ngFor="let answer of answersList"
+    |<answer-box *ngFor="let answer of answersList; let i = index"
     |[(title)]="answer.title"
     |[(answerName)]="answer.name"
     |[(options)]="answer.options"
     |[(isValidated)]="isValidated"
-    |#{{answer.name}}></answer-box>
+    |(answerChanged)="updateAnswer($event)"></answer-box>
     |</ul>
     |</div>
     """.stripMargin
@@ -105,16 +134,18 @@ class AnswersList(){
   @Input
   var answersList: js.Array[AnswerOptions] = _
 
-  def getAnswer(): List[Int] = {
-    var answers = List[Int]()
-    for(answerBox <- answersList){
+  var answers: mutable.Map[String, Correctnes.Value] = mutable.Map()
 
-      @ViewChild(answerBox.name)
-      var answerView: AnswerBox = null
+  def getAnswer(): Iterable[Correctnes.Value] = {
+    return answers.values
+  }
 
-      answers = answerView.getAnswer() :: answers
-    }
-    return answers
+  def updateAnswer(newAnswer: AnswerMessage){
+    answers += (newAnswer.name -> Correctnes(newAnswer.correctnes))
+  }
+
+  def resetAnswers(){
+    answers.clear()
   }
 }
 
@@ -128,6 +159,16 @@ trait AnswerOption extends js.Object {
 object AnswerOption {
   def apply(name: String, id: String, isCorrect: Boolean): AnswerOption =
     js.Dynamic.literal(name = name, id = id, isCorrect = isCorrect).asInstanceOf[AnswerOption]
+}
+
+@ScalaJSDefined
+trait AnswerMessage extends js.Object {
+  val name: String
+  val correctnes: Int
+}
+object AnswerMessage {
+  def apply(name: String, correctnes: Correctnes.Correctnes): AnswerMessage =
+    js.Dynamic.literal(name = name, correctnes = correctnes.id).asInstanceOf[AnswerMessage]
 }
 
 @Component(
@@ -155,15 +196,14 @@ class AnswerBox(){
   @Input
   var isValidated: Boolean = _
 
-  var points = 0
+  @Output
+  var answerChanged = new EventEmitter[AnswerMessage]()
+
+  answerChanged.emit(AnswerMessage(answerName, Correctnes.Unchecked))
 
   def onSelectionChange(isCorrect: Boolean){
-    if(isCorrect) points = 1
-    else points = -1
-  }
-
-  def getAnswer(): Int = {
-    return points
+    if(isCorrect) answerChanged.emit(AnswerMessage(answerName, Correctnes.Correct))
+    else answerChanged.emit(AnswerMessage(answerName, Correctnes.Wrong))
   }
 
 }
