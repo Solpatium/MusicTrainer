@@ -9,7 +9,7 @@ import scala.util.Random
 /**
   * DualIntervalPlayer is an implementation for Exercise - simple excercise with 2 intervals played simultanously
  *
-  * @param player - with this player the excercise will be played
+  * @param player - with this player the exercise will be played
   */
 case class DualIntervalExcercise(player:Player) extends Exercise {
   import DualIntervalExcercise._
@@ -22,19 +22,20 @@ case class DualIntervalExcercise(player:Player) extends Exercise {
   override def play(): Unit = this.player.play(track)
 
   override def getAnswers: mutable.Map[String,List[Answer]] = {
+    import ExerciseHelper._
     if(firstInterval._1.octave > secondInterval._1.octave) {
-      val answers = mutable.Map(ANSWER_TOP_NAME -> generateAnswer(intervalNum.head))
-      answers.put(ANSWER_BOTTOM_NAME, generateAnswer(intervalNum(1)))
+      val answers = mutable.Map(ANSWER_TOP_NAME -> generateAnswersSet(intervalNum.head, 12))
+      answers.put(ANSWER_BOTTOM_NAME, generateAnswersSet(intervalNum(1), 12))
       answers
     } else {
-      val answer = mutable.Map(ANSWER_BOTTOM_NAME -> generateAnswer(intervalNum(1)))
-      answer.put(ANSWER_TOP_NAME, generateAnswer(intervalNum.head))
+      val answer = mutable.Map(ANSWER_BOTTOM_NAME -> generateAnswersSet(intervalNum(1), 12))
+      answer.put(ANSWER_TOP_NAME, generateAnswersSet(intervalNum.head, 12))
       answer
     }
   }
 
   private def generateTrack(): Track = {
-    var track = new Track()
+    val track = new Track()
     var time = 0.0
 
     var duration = Random.nextFloat()
@@ -54,20 +55,8 @@ case class DualIntervalExcercise(player:Player) extends Exercise {
   }
 
   private def generateInterval(interval:Int, takenOctaves:List[Int] = List()): (Note, Note) = {
-    val firstNote = generateRandomNote(takenOctaves)
-    (firstNote, generateMatchingNote(firstNote, interval))
-  }
-
-  private def generateRandomNote(excludeOctaves:List[Int]): Note = {
-    var octave = Random.nextInt(2) + 4
-    while(excludeOctaves.contains(octave)) octave = Random.nextInt(5) + 1
-    val noteNum = Random.nextInt(12)
-    new Note(Note.fromInt(noteNum), octave)
-  }
-
-  private def generateMatchingNote(note: Note, interval: Int):Note = {
-    val absNewNote = (12 * note.octave) + Note.toInt(note.note) - interval
-    new Note(Note.fromInt(absNewNote % 12), absNewNote / 12)
+    val firstNote = ExerciseHelper generateRandomNote takenOctaves
+    (firstNote, ExerciseHelper generateMatchingNote(firstNote, interval))
   }
 }
 
@@ -82,14 +71,4 @@ object DualIntervalExcercise {
     * minimal delay between intervals
     */
   val MINIMAL_DELAY: Float = 0.4.toFloat
-
-  /**
-    * this method generates list of all possible answers
-    * @param correctInterval - this is the correct answer in the answers set
-    * @return list of possible answers for the exercise
-    */
-  private def generateAnswer(correctInterval:Int):List[Answer] = {
-    var correctIntervalAbs = math.abs(correctInterval)
-    (for (i <- 0 to 12) yield if(i == correctIntervalAbs) new Answer(i, true) else new Answer(i,false))(collection.breakOut)
-  }
 }
