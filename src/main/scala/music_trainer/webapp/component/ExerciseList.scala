@@ -41,6 +41,17 @@ object ExerciseItemDefinition {
 }
 
 
+@ScalaJSDefined
+trait SelectedOption extends js.Object {
+  val numOfExercises: Int
+  val id: Int
+}
+object SelectedOption {
+  def apply(numOfExercises: Int, id: Int): SelectedOption =
+    js.Dynamic.literal(numOfExercises = numOfExercises, id = id).asInstanceOf[SelectedOption]
+}
+
+
 @Component(
   selector = "exercise-list",
   template =
@@ -60,7 +71,7 @@ object ExerciseItemDefinition {
 class ExerciseList(){
 
   @Output
-  var menuSelected = new EventEmitter[Int]()
+  var menuSelected = new EventEmitter[SelectedOption]()
 
   val options = js.Array(
                           ExerciseItemDefinition("Cw1", Hardness.Easy, "Latwe cwiczenie", 1),
@@ -73,11 +84,19 @@ class ExerciseList(){
 @Component(
   selector = "exercise-item",
   template =
-  """<li class="exercise">
+  """<li class="container exercise">
     |<span class={{level}}></span>
     |<h4 class="exercise-title">{{title}}</h4>
     |<p class="exercise-content">{{content}}</p>
-    |<button class="button" (click)="selected()">wybierz</button>
+    |<span>Liczba ćwiczeń</span>
+    |<select #numofexercises class="exercises-count">
+    |<option [value]=10>10</option>
+    |<option [value]=20>20</option>
+    |<option [value]=50>50</option>
+    |<option [value]=100>100</option>
+    |<option [value]=200>200</option>
+    |</select>
+    |<button class="button select-exercise" (click)="selected(numofexercises.value)">wybierz</button>
     |</li>
     """.stripMargin
 )
@@ -95,9 +114,9 @@ class ExerciseItem() {
   var optionId: Int = _
 
   @Input
-  var menuEm: EventEmitter[Int] = _
+  var menuEm: EventEmitter[SelectedOption] = _
 
-  def selected(){
-    menuEm.emit(optionId)
+  def selected(numOfExercises: String){
+    menuEm.emit(SelectedOption(numOfExercises.toInt, optionId))
   }
 }

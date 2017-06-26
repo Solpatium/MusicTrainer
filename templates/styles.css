@@ -12,7 +12,7 @@ body {
     margin: 0;
     padding: 0;
 }
-@keyframes bacground { 
+@keyframes bacground {
     0%{background-color: #4dafda}
     50%{background-color: #51caa1;}
     100%{background-color: #ffc184}
@@ -65,9 +65,9 @@ select, button, .button {
 
 .hidden-radio {
     display: none;
-} 
+}
 
-select:hover, 
+select:hover,
 button:hover,
 .hidden-radio:checked + .button {
     background-color: white;
@@ -180,7 +180,7 @@ header {
 /* EXERCISE */
 #validate-answers {
     margin: auto;
-    display: block; 
+    display: block;
 }
 
 .answer-wrapper {
