@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&subset=latin-ext');
+body {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    color: white;
+    letter-spacing: 1px;
+    background-size: 600% 600%;
+    -webkit-animation: bacground 20s infinite;
+    -moz-animation: bacground 20s infinite;
+    animation: bacground 20s alternate infinite;
+    margin: 0;
+    padding: 0;
+}
+@keyframes bacground { 
+    0%{background-color: #4dafda}
+    50%{background-color: #51caa1;}
+    100%{background-color: #ffc184}
+}
+@-moz-keyframes bacground {
+    0%{background-color: #4dafda}
+    50%{background-color: #51caa1;}
+    100%{background-color: #ffc184}
+}
+
+a {
+    color: white !important;
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: dashed #ffffff 2px;
+    padding: 0 2px 3px 2px;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+#content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*GENERAL*/
+select, button, .button {
+   -webkit-appearance: none;
+   -moz-appearance:    none;
+   appearance:         none;
+   cursor: pointer;
+   padding: 15px 20px;
+   background: 0;
+   border: solid 3px white;
+   border-radius: 30px;
+   color: white;
+   text-transform: uppercase;
+   font-size: 16px;
+   letter-spacing: 4px;
+   font-weight: 900;
+   transition: background-color 1s, color 0.5s, border-color 1s;
+   display: inline-block;
+   min-width: 62px;
+   text-align: center;
+   outline: 0;
+}
+
+.hidden-radio {
+    display: none;
+} 
+
+select:hover, 
+button:hover,
+.hidden-radio:checked + .button {
+    background-color: white;
+    color: #373838;
+}
+
+/*HEADER*/
+#logo {
+    margin-top: 15px;
+    float: left;
+    margin-right: 20px;
+}
+
+#logo path {
+    fill: #5f1111
+}
+
+#stage-title {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 30px;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+#stage-subtitle {
+    margin-top: 10px;
+    font-weight: 100;
+    font-size: 1.3em;
+    color: #ffffff;
+}
+
+header { 
+    position: relative;
+    padding: 20px 0;
+/*     border-bottom: dashed white 5px;  */
+}
+
+#instrument {
+    position: absolute;
+    top: 30px;;
+    right: 0;
+}
+
+/* LIST */
+#exercises-list {
+    padding: 0;   
+}
+.container {
+    display: block;
+    list-style: none;
+    /*     border: solid white 1px; */
+    /*     margin-top: 20px; */
+    /*     background-color:#34bdbd; */
+    /*     border-radius: 10px; */
+    padding: 20px;
+    /*     border-radius: 30px; */
+    /*     -webkit-filter: blur(20px); */
+    /*     -moz-filter: blur(20px); */
+    /*     -o-filter: blur(20px); */
+    /*     -ms-filter: blur(20px); */
+    /*     filter: blur(5px); */
+    /*     opacity: 0.4; */
+    /*transition: border 1s;*/
+    border-bottom: dashed 5px;
+    border-bottom: solid 1px;
+/*     border-top: solid 1px; */
+    /* border: solid 5px; */
+    margin-bottom: 20px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.exercise .hardness {
+    position: absolute;
+    right: 20px;
+    font-size: 25px;
+}
+
+.exercise .hardness-easy:before {
+    content: "☆☆";
+}
+.exercise .hardness-medium:before {
+    content: "☆";
+}
+.select-exercise {
+    float: right;
+}
+.exercise:hover {
+/*     border-color: rgba(255, 255, 255, 0.48); */
+}
+
+.exercise-title {
+    font-weight: 600;
+    font-size: 1.4em;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: dashed 2px white;
+    marign-bottom: 0;
+}
+
+.exercise-content {
+    margin-top: 0;
+}
+
+/* EXERCISE */
+#validate-answers {
+    margin: auto;
+    display: block; 
+}
+
+.answer-wrapper {
+    padding: 30px;
+    text-align: center;
+}
+
+.validated .hidden-radio:checked + .answer:not(.good) {
+    background-color: #ff7373;
+    border-color: #ff7373;
+    color: white;
+}
+
+.validated .answer.good {
+    background-color: #12da28;
+    border-color: #12da28;
+    color: white;
+}
+
+#score {
+    text-align: right;
+    font-size: 1.5em;
+}
+
+
+/*
+    PAGE
+*/
+#final-score {
+    font-size: 2.2em;
+}
