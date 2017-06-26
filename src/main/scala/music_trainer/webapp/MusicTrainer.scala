@@ -11,7 +11,7 @@ import music_trainer.webapp.component._
 
 @NgModule(
   imports = @@[BrowserModule],
-  declarations = @@[AppComponent,ButtonComponent,ExerciseList,ExerciseItem],
+  declarations = @@[AppComponent,ButtonComponent,ExerciseList,ExerciseItem,ExerciseView],
   bootstrap = @@[AppComponent]
 )
 class AppModule {
@@ -20,10 +20,19 @@ class AppModule {
 
 @Component(
   selector = "my-app",
-  template = "<h1>Hello Angular LOL!<my-button></my-button></h1><exercise-list></exercise-list>"
+  template = "<h1>Hello Angular!<my-button></my-button></h1><exercise-view #ev (returnMenu)=\"menuSel($event)\"></exercise-view><exercise-list *ngIf=\"num == 0\" (menuSelected)=\"menuSel($event)\"></exercise-list>"
 )
 class AppComponent {
 
+  @ViewChild("ev")
+  var exerciseView: ExerciseView = _
+
+  var num = 0
+
+  def menuSel(item: Int){
+    num = item
+    exerciseView.changeExercise(num)
+  }
 }
 
 @Component(
