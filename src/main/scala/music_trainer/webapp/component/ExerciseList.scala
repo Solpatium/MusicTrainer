@@ -54,19 +54,7 @@ object SelectedOption {
 
 @Component(
   selector = "exercise-list",
-  template =
-  """<div>
-    |<ul class="list" id="exercises-list">
-    |<exercise-item *ngFor="let ex of options"
-    |[(title)]="ex.title"
-    |[(level)]="ex.level"
-    |[(content)]="ex.content"
-    |[(optionId)]="ex.optionId"
-    |[(menuEm)]="menuSelected">
-    |</exercise-item>
-    |</ul>
-    |</div>
-    """.stripMargin
+  templateUrl = "resources/exercise-list.html"
 )
 class ExerciseList(){
 
@@ -83,22 +71,7 @@ class ExerciseList(){
 
 @Component(
   selector = "exercise-item",
-  template =
-  """<li class="container exercise">
-    |<span class={{level}}></span>
-    |<h4 class="exercise-title">{{title}}</h4>
-    |<p class="exercise-content">{{content}}</p>
-    |<span>Liczba ćwiczeń</span>
-    |<select #numofexercises class="exercises-count">
-    |<option [value]=10>10</option>
-    |<option [value]=20>20</option>
-    |<option [value]=50>50</option>
-    |<option [value]=100>100</option>
-    |<option [value]=200>200</option>
-    |</select>
-    |<button class="button select-exercise" (click)="selected(numofexercises.value)">wybierz</button>
-    |</li>
-    """.stripMargin
+  templateUrl = "resources/exercise-item.html"
 )
 class ExerciseItem() {
   @Input

@@ -1,0 +1,11 @@
+<div>
+  <ul class="list" id="exercises-list">
+    <exercise-item *ngFor="let ex of options"
+        [(title)]="ex.title"
+        [(level)]="ex.level"
+        [(content)]="ex.content"
+        [(optionId)]="ex.optionId"
+        [(menuEm)]="menuSelected">
+    </exercise-item>
+  </ul>
+</div>

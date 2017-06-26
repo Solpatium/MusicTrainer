@@ -1,0 +1,14 @@
+<li class="container exercise">
+  <span class={{level}}></span>
+  <h4 class="exercise-title">{{title}}</h4>
+  <p class="exercise-content">{{content}}</p>
+  <span>Liczba ćwiczeń</span>
+  <select #numofexercises class="exercises-count">
+    <option [value]=10>10</option>
+    <option [value]=20>20</option>
+    <option [value]=50>50</option>
+    <option [value]=100>100</option>
+    <option [value]=200>200</option>
+  </select>
+  <button class="button select-exercise" (click)="selected(numofexercises.value)">wybierz</button>
+</li>

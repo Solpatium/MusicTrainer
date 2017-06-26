@@ -20,7 +20,7 @@ class AppModule {
 
 @Component(
   selector = "my-app",
-  template = "<h1>Hello Angular!<my-button></my-button></h1><exercise-view #ev (returnMenu)=\"returnFromExercise($event)\"></exercise-view><exercise-list *ngIf=\"num == 0\" (menuSelected)=\"menuSel($event)\"></exercise-list>"
+  templateUrl = "resources/app.html"
 )
 class AppComponent {
 

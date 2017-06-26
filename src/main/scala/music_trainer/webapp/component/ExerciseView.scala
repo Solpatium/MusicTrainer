@@ -15,18 +15,7 @@ import scala.collection.mutable
 
 @Component(
   selector = "exercise-view",
-  template =
-  """<div *ngIf="num != 0">
-    |<h1>
-    |Exercise {{num}} {{numOfExercises}} {{score}}
-    |</h1>
-    |<answers-list #answerslistid [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
-    |<div><button (click)="playExercise()">Play</button></div>
-    |<button *ngIf="!isValidated" (click)="check()">Check</button>
-    |<button *ngIf="isValidated" (click)="nextTask()">Next</button>
-    |<button (click)="returnMenu.emit(0)">Menu</button>
-    |</div>
-    """.stripMargin
+  templateUrl = "resources/exercise-view.html"
 )
 class ExerciseView(){
   @Output
@@ -114,18 +103,7 @@ object AnswerOptions {
 
 @Component(
   selector = "answers-list",
-  template =
-  """<div>
-    |<ul [ngClass]="{'list': 1, 'answers': 1, 'validated': isValidated }">
-    |<answer-box *ngFor="let answer of answersList; let i = index"
-    |[(title)]="answer.title"
-    |[(answerName)]="answer.name"
-    |[(options)]="answer.options"
-    |[(isValidated)]="isValidated"
-    |(answerChanged)="updateAnswer($event)"></answer-box>
-    |</ul>
-    |</div>
-    """.stripMargin
+  templateUrl = "resources/answers-list.html"
 )
 class AnswersList(){
   @Input
@@ -173,15 +151,7 @@ object AnswerMessage {
 
 @Component(
   selector = "answer-box",
-  template =
-  """<li class="container answer-wrapper">
-    |<h4 class="answer-title">{{title}}</h4>
-    |<ng-container *ngFor="let option of options">
-    |<input class="hidden-radio" type="radio" name={{answerName}} id={{answerName}}{{option.id}} value="option.id" (change)="onSelectionChange(option.isCorrect)">
-    |<label for={{answerName}}{{option.id}} [ngClass]="{'button': 1, 'answer': 1, 'good': option.isCorrect}">{{option.name}}</label>
-    |</ng-container>
-    |</li>
-    """.stripMargin
+  templateUrl = "resources/answer-box.html"
 )
 class AnswerBox(){
   @Input

@@ -1,0 +1,10 @@
+<div *ngIf="num != 0">
+  <h1>
+    Exercise {{num}} {{numOfExercises}} {{score}}
+  </h1>
+  <answers-list #answerslistid [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
+  <div><button (click)="playExercise()">Play</button></div>
+  <button *ngIf="!isValidated" (click)="check()">Check</button>
+  <button *ngIf="isValidated" (click)="nextTask()">Next</button>
+  <button (click)="returnMenu.emit(0)">Menu</button>
+</div>
