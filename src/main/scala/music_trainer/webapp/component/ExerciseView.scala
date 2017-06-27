@@ -84,6 +84,10 @@ class ExerciseView(){
     exercise.play()
   }
 
+  def stopPlay(){
+    println("Stop play")
+  }
+
 }
 
 

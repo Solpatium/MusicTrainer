@@ -1,6 +1,6 @@
 <ng-container *ngIf="num != 0">
   <header>
-    <img id="logo" src="resources/note.png">
+    <img id="logo" src="resources/note.png" (click)="returnMenu.emit(0)" style="cursor: pointer;">
 
     <h3 id="stage-title">Kwadrat w kole oktawy</h3>
     <h4 id="stage-subtitle">Wybierz prawidłowe odpowiedzi</h4>
@@ -12,13 +12,9 @@
     <div id="player-wrapper">
       <button id="player" (click)="playExercise()">Odtwórz</button>
     </div>
-    <h1>
-      Exercise {{num}}
-    </h1>
     <answers-list #answerslistid [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
     <button *ngIf="!isValidated" class="button" id="validate-answers" (click)="check()">Sprawdź</button>
     <button *ngIf="isValidated" class="button" id="validate-answers" (click)="nextTask()">Następne</button>
-    <button (click)="returnMenu.emit(0)">Menu</button>
   </div>
   <div *ngIf="tasks > numOfExercises" id="content">
     <div class="container answer-wrapper">
