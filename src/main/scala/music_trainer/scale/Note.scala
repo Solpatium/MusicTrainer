@@ -38,9 +38,9 @@ object Note extends Enumeration {
 
   val ValueByInt: Map[Int, Note.Value] = Map() ++ intValues.map(_.swap)
 
-  def frequency(note: Value):Double = frequencies(note)
+  def frequency(note: Value): Double = frequencies(note)
 
-  def toInt(note: Value):Int = intValues(note)
+  def toInt(note: Value): Int = intValues(note)
 
   def fromInt(value: Int):Note.Note = ValueByInt(value)
 }

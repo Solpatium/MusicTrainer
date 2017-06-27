@@ -1,0 +1,9 @@
+project
+!project/plugins.sbt
+target
+*.jar
+*.class
+*.log
+sbt
+sbt-launch-lib.bash
+sbt.bat

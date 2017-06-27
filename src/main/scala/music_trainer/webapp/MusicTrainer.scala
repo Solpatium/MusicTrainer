@@ -20,19 +20,32 @@ object MusicTrainer extends JSApp {
     val $dualExercise = jQuery("#dual-exercise")
     val $singleExercise = jQuery("#single-exercise")
     val $squareExercise = jQuery("#square-exercise")
+    val $stop = jQuery("#stop")
 
-    var player = new Player(Piano, volumeMultiplier=0.7)
+    var player = new Player(new Instrument("Piano"))
+    
+    // Add all available instruments
+    for( (instrument,_) <- Instrument.list) {
+      $instrument append s"""<option value="$instrument">$instrument</option>""" 
+    }
+    // Add handler for instrument change
     $instrument change (() => {
-      val instrument = if($instrument.value().asInstanceOf[String] == "Piano") Piano else Organ
-      player = new Player(instrument, volumeMultiplier=0.7)
+      val instrument = new Instrument($instrument.value().asInstanceOf[String])
+      player = new Player(instrument)
     })
+    // Select first instrument
+    val firstInstrument = $instrument.children(":first").value().asInstanceOf[String]
+    println(firstInstrument)
+    $instrument.value( firstInstrument ).trigger("change")
 
-    var octave = 4
+    $stop click (() => player.stop )
+
+    var octave = 6
     $octave change (() => {
-      octave = $octave.value().asInstanceOf[Int]
+      octave = $octave.value().asInstanceOf[String].toInt
     })
 
-    val length = 2
+    val length = 1
     // Playing single note
     for( note <- Note.values ) {
       val name = note.toString. replaceAllLiterally("$hash", "#")
