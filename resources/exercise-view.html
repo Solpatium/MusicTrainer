@@ -14,7 +14,8 @@
     </div>
     <answers-list #answerslistid [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
     <button *ngIf="!isValidated" class="button" id="validate-answers" (click)="check()">Sprawdź</button>
-    <button *ngIf="isValidated" class="button" id="validate-answers" (click)="nextTask()">Następne</button>
+    <button *ngIf="isValidated && tasks != numOfExercises" class="button" id="validate-answers" (click)="nextTask()">Następne</button>
+    <button *ngIf="isValidated && tasks == numOfExercises" class="button" id="validate-answers" (click)="tasks=tasks+1">Wyniki</button>
   </div>
   <div *ngIf="tasks > numOfExercises" id="content">
     <div class="container answer-wrapper">
