@@ -25,13 +25,15 @@ class ExerciseView(){
   var answersForm: AnswersList = _
 
   var num: Int = 0
-  var numOfExercises: Int = 0
+  var numOfExercises: Int = 1
 
   var isValidated: Boolean = false
 
   var player = new Player(Piano, volumeMultiplier=0.7)
   var exercise: Exercise = new DualIntervalExcercise(player)
-  var score = 0
+  var score: Int = 0
+  var tasks: Int = 0
+  var answersBlocks: Int = 0
 
   var answersList: js.Array[AnswerOptions] = js.Array[AnswerOptions]()
 
@@ -39,6 +41,7 @@ class ExerciseView(){
     num = newNum
     score = 0
     numOfExercises = newNumOfExercises
+    tasks = 0
     nextTask()
   }
 
@@ -49,11 +52,12 @@ class ExerciseView(){
   def check(){
     isValidated = true
     val answersList = answersForm.getAnswer()
-    if(answersList.forall( a => a == Correctnes.Correct ))
+    if(answersList.forall( a => a == Correctnes.Correct ) && answersList.size == answersBlocks)
       score += 1
   }
 
   def nextTask(){
+    tasks += 1
     isValidated = false
     if(answersForm != js.undefined) answersForm.resetAnswers()
     answersList = js.Array[AnswerOptions]()
@@ -72,6 +76,7 @@ class ExerciseView(){
       val options = for (o <- answers(name)) yield AnswerOption(Answer.getHumanReadAble(o.interval), o.interval.toString, o.isCorrect)
       answersList.push(AnswerOptions(name, name, options))
     }
+    answersBlocks = answersName.size
     playExercise()
   }
 
