@@ -23,15 +23,15 @@ class AppComponent {
   @ViewChild("ev")
   var exerciseView: ExerciseView = _
 
-  var num = 0
+  var num = -1
 
   def returnFromExercise(code: Int){
-    num = 0
+    num = -1
     exerciseView.stopExercise()
   }
 
   def menuSel(item: SelectedOption){
     num = item.id
-    exerciseView.changeExercise(num, item.numOfExercises)
+    exerciseView.changeExercise(num, item.numOfExercises, item.instrument)
   }
 }

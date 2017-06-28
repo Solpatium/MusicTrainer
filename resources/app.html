@@ -1,4 +1,4 @@
 <div id="content-wrapper">
   <exercise-view #ev (returnMenu)="returnFromExercise($event)"></exercise-view>
-  <exercise-list *ngIf="num == 0" (menuSelected)="menuSel($event)"></exercise-list>
+  <exercise-list *ngIf="num == -1" (menuSelected)="menuSel($event)"></exercise-list>
 </div>

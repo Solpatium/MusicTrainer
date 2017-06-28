@@ -121,3 +121,18 @@ object ExerciseHelper {
   def getSimpleInterval(note1:Note, note2:Note): Int = math.abs(Note.toInt(note1.note) - Note.toInt(note2.note)) % 12
 
 }
+
+object ExerciseTypes extends Enumeration{
+  type ExerciseTypes = Value
+  val BaseSquareInterval, DominantEasy, DominantMedium, DominantHard, DualInterval, SingleInterval = Value
+
+  def toString(hardness: Value): String =
+    hardness match {
+      case BaseSquareInterval => "Kwadrat w kole oktawy??????"
+      case DominantEasy => "Dominanta"
+      case DominantMedium => "Dominanta"
+      case DominantHard => "Dominanta"
+      case DualInterval => "Podwójny interwał"
+      case SingleInterval => "Pojedynczy interwał"
+    }
+}

@@ -12,6 +12,9 @@ import js.annotation._
 
 import scala.collection.mutable
 
+import org.scalajs.dom
+import org.scalajs.dom.html
+import music_trainer.visualization.Visualization
 
 @Component(
   selector = "exercise-view",
@@ -24,7 +27,7 @@ class ExerciseView(){
   @ViewChild("answerslistid")
   var answersForm: AnswersList = _
 
-  var num: Int = 0
+  var num: Int = -1
   var numOfExercises: Int = 1
 
   var isValidated: Boolean = false
@@ -34,19 +37,25 @@ class ExerciseView(){
   var score: Int = 0
   var tasks: Int = 0
   var answersBlocks: Int = 0
+  var title: String = ""
+  var visual: Visualization = _
 
   var answersList: js.Array[AnswerOptions] = js.Array[AnswerOptions]()
 
-  def changeExercise(newNum: Int, newNumOfExercises: Int){
+  def changeExercise(newNum: Int, newNumOfExercises: Int, newInstrument: String){
     num = newNum
     score = 0
     numOfExercises = newNumOfExercises
     tasks = 0
+    var player = new Player(new Instrument(newInstrument))
+
+    title = ExerciseTypes.toString(ExerciseTypes(num))
+
     nextTask()
   }
 
   def stopExercise(){
-    num = 0
+    num = -1
   }
 
   def check(){
@@ -61,14 +70,15 @@ class ExerciseView(){
     isValidated = false
     if(answersForm != js.undefined) answersForm.resetAnswers()
     answersList = js.Array[AnswerOptions]()
-    exercise = new DualIntervalExercise()
 
-    import DualIntervalExercise.{ANSWER_BOTTOM_NAME, ANSWER_TOP_NAME}
-    println(ANSWER_TOP_NAME + ": " +
-//        This is how you get correct, human-Readable answer
-      exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).head)
-    println(ANSWER_BOTTOM_NAME + ": " +
-      exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).head)
+    ExerciseTypes(num) match {
+      case ExerciseTypes.DualInterval => exercise = new DualIntervalExercise()
+      case ExerciseTypes.DominantEasy => exercise = new DominantExercise(1)
+      case ExerciseTypes.DominantMedium => exercise = new DominantExercise(2)
+      case ExerciseTypes.DominantHard => exercise = new DominantExercise(3)
+      case ExerciseTypes.SingleInterval => exercise = new SingleIntervalExercise()
+      case ExerciseTypes.BaseSquareInterval => exercise = new BaseSquareIntervalExercise()
+    }
 
     val answers = exercise.getAnswers
     val answersName = answers.keys
@@ -81,6 +91,8 @@ class ExerciseView(){
   }
 
   def playExercise(){
+    var canvas = dom.document.getElementById("visualizer").asInstanceOf[html.Canvas]
+    var visual = new Visualization(canvas, exercise.track.sounds.keys)
     player.play(exercise.track)
   }
 

@@ -6,6 +6,10 @@ import angulate2.core.EventEmitter
 import scala.scalajs.js
 import js.annotation._
 
+import music_trainer.scale.Instrument
+
+import scala.collection.immutable.HashMap
+
 /*
 object ExerciseItem{
   val Hardness: Map[String, String] = HashMap(
@@ -40,15 +44,25 @@ object ExerciseItemDefinition {
     js.Dynamic.literal(title = title, level = Hardness.toString(level), content = content, optionId = optionId).asInstanceOf[ExerciseItemDefinition]
 }
 
+@ScalaJSDefined
+trait InstrumentDefinition extends js.Object {
+  val id: String
+  val name: String
+}
+object InstrumentDefinition {
+  def apply(id: String, name: String): InstrumentDefinition =
+    js.Dynamic.literal(id = id, name = name).asInstanceOf[InstrumentDefinition]
+}
 
 @ScalaJSDefined
 trait SelectedOption extends js.Object {
   val numOfExercises: Int
   val id: Int
+  val instrument: String
 }
 object SelectedOption {
-  def apply(numOfExercises: Int, id: Int): SelectedOption =
-    js.Dynamic.literal(numOfExercises = numOfExercises, id = id).asInstanceOf[SelectedOption]
+  def apply(numOfExercises: Int, id: Int, instrument: String): SelectedOption =
+    js.Dynamic.literal(numOfExercises = numOfExercises, id = id, instrument = instrument).asInstanceOf[SelectedOption]
 }
 
 
@@ -61,10 +75,28 @@ class ExerciseList(){
   @Output
   var menuSelected = new EventEmitter[SelectedOption]()
 
+  import music_trainer.scale.Exercises.ExerciseTypes
+  import music_trainer.scale.Exercises.ExerciseTypes._
+
   val options = js.Array(
-                          ExerciseItemDefinition("Cw1", Hardness.Easy, "Latwe cwiczenie", 1),
-                          ExerciseItemDefinition("Cw2", Hardness.Hard, "Trudne cwiczenie", 2)
+                          ExerciseItemDefinition(ExerciseTypes.toString(DualInterval), Hardness.Easy, "Latwe cwiczenie", DualInterval.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleInterval), Hardness.Hard, "Trudne cwiczenie", SingleInterval.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(DominantEasy), Hardness.Easy, "Trudne cwiczenie", DominantEasy.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(DominantMedium), Hardness.Medium, "Trudne cwiczenie", DominantMedium.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(DominantHard), Hardness.Hard, "Trudne cwiczenie", DominantHard.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(BaseSquareInterval), Hardness.Medium, "Średnie cwiczenie", BaseSquareInterval.id)
                         )
+
+  val instrumentNames = HashMap(
+      "Piano" -> "Pianion",
+      "Clavinet" -> "clavinet/Klarnet?????",
+      "Guitar" -> "Gitara"
+  )
+
+  var instruments = js.Array[InstrumentDefinition]()
+
+  for(i <- Instrument.list.keys)
+    instruments.push(InstrumentDefinition(i, instrumentNames(i)))
 
 }
 
@@ -89,7 +121,11 @@ class ExerciseItem() {
   @Input
   var menuEm: EventEmitter[SelectedOption] = _
 
+  @Input
+  var instrument: String = _
+
   def selected(numOfExercises: String){
-    menuEm.emit(SelectedOption(numOfExercises.toInt, optionId))
+    println(instrument)
+    menuEm.emit(SelectedOption(numOfExercises.toInt, optionId, instrument))
   }
 }

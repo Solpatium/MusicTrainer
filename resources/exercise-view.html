@@ -1,11 +1,12 @@
-<ng-container *ngIf="num != 0">
+<ng-container *ngIf="num != -1">
   <header>
     <img id="logo" src="resources/note.png" (click)="returnMenu.emit(0)" style="cursor: pointer;">
 
-    <h3 id="stage-title">Kwadrat w kole oktawy</h3>
+    <h3 id="stage-title">{{title}}</h3>
     <h4 id="stage-subtitle">Wybierz prawidłowe odpowiedzi</h4>
   </header>
   <div *ngIf="tasks <= numOfExercises" id="content">
+    <canvas id="visualizer" height="500" style="width:100%;"></canvas>
     <div id="score">
       <span class="current-score">{{score}}</span>/<span class="max-score">{{numOfExercises}}</span>
     </div>
