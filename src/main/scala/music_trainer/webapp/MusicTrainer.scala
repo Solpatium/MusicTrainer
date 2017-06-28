@@ -1,6 +1,6 @@
 package music_trainer.webapp
 
-import music_trainer.scale.Exercises.{Answer, BaseSquareIntervalExercise, DualIntervalExcercise, SingleIntervalExercise}
+import music_trainer.scale.Exercises._
 import music_trainer.scale.Track
 import org.scalajs.jquery.jQuery
 
@@ -20,6 +20,7 @@ object MusicTrainer extends JSApp {
     val $dualExercise = jQuery("#dual-exercise")
     val $singleExercise = jQuery("#single-exercise")
     val $squareExercise = jQuery("#square-exercise")
+    val $dominantExercise = jQuery("#dominant-exercise")
     val $stop = jQuery("#stop")
 
     var player = new Player(new Instrument("Piano"))
@@ -70,28 +71,37 @@ object MusicTrainer extends JSApp {
     })
 
     $dualExercise click (() => {
-      val exercise = new DualIntervalExcercise(player)
-      exercise.play()
-      import DualIntervalExcercise.{ANSWER_BOTTOM_NAME, ANSWER_TOP_NAME}
+      val exercise = new DualIntervalExercise()
+      player.play(exercise.track)
+      import DualIntervalExercise.{ANSWER_BOTTOM_NAME, ANSWER_TOP_NAME}
       println(ANSWER_TOP_NAME + ": " +
 //        This is how you get correct, human-Readable answer
-        exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+        exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).head)
       println(ANSWER_BOTTOM_NAME + ": " + 
-        exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+        exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).head)
     })
 
     $singleExercise click(() => {
-      val exercise = new SingleIntervalExercise(player)
-      exercise.play()
-      println(SingleIntervalExercise.ANSWER + ": " + exercise.getAnswers(SingleIntervalExercise.ANSWER).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+      val exercise = new SingleIntervalExercise()
+      player.play(exercise.track)
+      println(SingleIntervalExercise.ANSWER + ": " + exercise.getAnswers(SingleIntervalExercise.ANSWER).filter(_.isCorrect).head)
     })
 
     $squareExercise click (() => {
-      val exercise = new BaseSquareIntervalExercise(player)
-      exercise.play()
+      val exercise = new BaseSquareIntervalExercise()
+      player.play(exercise.track)
       for (answer <- exercise.getAnswers.keys) {
-        println(answer + ": " + exercise.getAnswers(answer).filter(_.isCorrect).map(ans => Answer.getHumanReadAble(ans.interval)).head)
+        println(answer + ": " + exercise.getAnswers(answer).filter(_.isCorrect).head)
       }
     })
+
+    $dominantExercise click (() => {
+      val exercise = new DominantExercise(3)
+      player.play(exercise.track)
+      for (answer <- exercise.getAnswers.keys) {
+        println(answer + ": " + exercise.getAnswers(answer).filter(_.isCorrect).head)
+      }
+    })
+
   }
 }

@@ -6,23 +6,16 @@ import scala.util.Random
 
 /**
   * BaseSquareIntervalExercise is an implementation for Exercise - exercise with 4 notes and 4 intervals (2 melodical, 2 harminic)
-  *
-  * @param player - with this player the exercise will be played
   */
-class BaseSquareIntervalExercise(val player: Player) extends Exercise {
+class BaseSquareIntervalExercise() extends Exercise {
   import BaseSquareIntervalExercise._
   private val melodicIntervalNum:List[Int] = Random.nextInt(24) - 12 :: Random.nextInt(24) - 12 :: Nil
   var firstInterval: (Note, Note) = generateInterval(melodicIntervalNum.head)
-  var secondInterval: (Note, Note) = generateInterval(melodicIntervalNum(1), firstInterval._1.octave :: firstInterval._2.octave :: Nil)
+  var secondInterval: (Note, Note) = generateInterval(melodicIntervalNum(1), firstInterval._1 :: firstInterval._2 :: Nil)
   private val harmonicIntervalNum =
     ExerciseHelper.getSimpleInterval(firstInterval._1, secondInterval._1) ::
       ExerciseHelper.getSimpleInterval(firstInterval._2, secondInterval._2) :: Nil
   var track:Track = generateTrack()
-
-  /**
-    * use this method to play the excercise
-    */
-  override def play(): Unit = player.play(track)
 
   /**
     * this method returns all answers for the exercise as a map[String,List[Answer] ]. One exercise may have more than 1 correct
@@ -31,21 +24,21 @@ class BaseSquareIntervalExercise(val player: Player) extends Exercise {
     * answer is the correct one.
     */
   override def getAnswers: mutable.Map[String, List[Answer]] = {
-    import ExerciseHelper._
+    import IntervalAnswer._
     val answers = mutable.Map(ANSWER_HARMONIC_FIRST_NAME -> generateAnswersSet(harmonicIntervalNum.head, 12))
     answers.put(ANSWER_HARMONIC_SECOND_NAME, generateAnswersSet(harmonicIntervalNum(1), 12))
     if(firstInterval._1.octave > secondInterval._1.octave) {
       answers.put(ANSWER_TOP_NAME, generateAnswersSet(melodicIntervalNum.head, 12))
       answers.put(ANSWER_BOTTOM_NAME, generateAnswersSet(melodicIntervalNum(1), 12))
     } else {
-      answers.put(ANSWER_BOTTOM_NAME, generateAnswersSet(melodicIntervalNum(1), 12))
-      answers.put(ANSWER_TOP_NAME, generateAnswersSet(melodicIntervalNum.head, 12))
+      answers.put(ANSWER_TOP_NAME, generateAnswersSet(melodicIntervalNum(1), 12))
+      answers.put(ANSWER_BOTTOM_NAME, generateAnswersSet(melodicIntervalNum.head, 12))
     }
     answers
   }
 
-  private def generateInterval(interval:Int, takenOctaves:List[Int] = List()): (Note, Note) = {
-    val firstNote = ExerciseHelper generateRandomNote takenOctaves
+  private def generateInterval(interval:Int, takenNotes:List[Note] = List()): (Note, Note) = {
+    val firstNote = ExerciseHelper generateRandomNote takenNotes
     (firstNote, ExerciseHelper generateMatchingNote(firstNote, interval))
   }
 
@@ -77,9 +70,9 @@ object BaseSquareIntervalExercise {
   /**
     * minimal note duration
     */
-  val MINIMAL_DURATION: Float = 1.0.toFloat
+  val MINIMAL_DURATION: Float = 1.5.toFloat
   /**
     * minimal delay between intervals
     */
-  val MINIMAL_DELAY: Float = 0.4.toFloat
+  val MINIMAL_DELAY: Float = 1.3.toFloat
 }
