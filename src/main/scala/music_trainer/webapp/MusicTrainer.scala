@@ -1,9 +1,5 @@
 package music_trainer.webapp
 
-import music_trainer.scale.Exercises.{Answer, DualIntervalExcercise}
-import music_trainer.scale.Track
-import music_trainer.scale._
-
 import angulate2.std._
 import angulate2.platformBrowser.BrowserModule
 

@@ -1,6 +1,7 @@
 package music_trainer.scale.Exercises
 
 import music_trainer.scale.Note
+import music_trainer.scale.Track
 
 import scala.collection.mutable
 import scala.util.Random
@@ -20,6 +21,7 @@ trait Exercise {
     * answer is the correct one.
     */
   def getAnswers:mutable.Map[String,List[Answer]]
+  val track: Track
 }
 
 class DominantAnswer(var position:Int, var isCorrectAnswer:Boolean) extends Answer{
@@ -119,4 +121,3 @@ object ExerciseHelper {
   def getSimpleInterval(note1:Note, note2:Note): Int = math.abs(Note.toInt(note1.note) - Note.toInt(note2.note)) % 12
 
 }
-

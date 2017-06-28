@@ -20,7 +20,7 @@ class Player(val instrument: Instrument,
             MIDI.programChange(0, instrument.code-1)
         })
     );
-    MIDI.loadPlugin(properties)    
+    MIDI.loadPlugin(properties)
 
     def play(sound: Sound) {
         MIDI.noteOn(0, sound.midiValue, velocity, 0)

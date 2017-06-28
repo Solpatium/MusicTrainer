@@ -29,8 +29,8 @@ class ExerciseView(){
 
   var isValidated: Boolean = false
 
-  var player = new Player(Piano, volumeMultiplier=0.7)
-  var exercise: Exercise = new DualIntervalExcercise(player)
+  var player = new Player(new Instrument("Piano"))
+  var exercise: Exercise = new DualIntervalExercise()
   var score: Int = 0
   var tasks: Int = 0
   var answersBlocks: Int = 0
@@ -61,19 +61,19 @@ class ExerciseView(){
     isValidated = false
     if(answersForm != js.undefined) answersForm.resetAnswers()
     answersList = js.Array[AnswerOptions]()
-    exercise = new DualIntervalExcercise(player)
+    exercise = new DualIntervalExercise()
 
-    import DualIntervalExcercise.{ANSWER_BOTTOM_NAME, ANSWER_TOP_NAME}
+    import DualIntervalExercise.{ANSWER_BOTTOM_NAME, ANSWER_TOP_NAME}
     println(ANSWER_TOP_NAME + ": " +
 //        This is how you get correct, human-Readable answer
-      exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+      exercise.getAnswers(ANSWER_TOP_NAME).filter(_.isCorrect).head)
     println(ANSWER_BOTTOM_NAME + ": " +
-      exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).map(answer => Answer.getHumanReadAble(answer.interval)).head)
+      exercise.getAnswers(ANSWER_BOTTOM_NAME).filter(_.isCorrect).head)
 
     val answers = exercise.getAnswers
     val answersName = answers.keys
     for(name <- answersName){
-      val options = for (o <- answers(name)) yield AnswerOption(Answer.getHumanReadAble(o.interval), o.interval.toString, o.isCorrect)
+      val options = for (o <- answers(name)) yield AnswerOption(o.toString(), o.toString(), o.isCorrect)
       answersList.push(AnswerOptions(name, name, options))
     }
     answersBlocks = answersName.size
@@ -81,7 +81,7 @@ class ExerciseView(){
   }
 
   def playExercise(){
-    exercise.play()
+    player.play(exercise.track)
   }
 
   def stopPlay(){
