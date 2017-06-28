@@ -1,53 +1,24 @@
 package music_trainer.scale
 
 import scala.scalajs.js.Math
+import scala.collection.immutable.HashMap
 
-abstract class Instrument(val name: String) {
-    def attack() : Double;
-    def dampen(sampleRate: Double, frequency: Double, volume: Double) : Double;
-    def wave(i: Int, sampleRate: Double, frequency: Double) : Double;
+
+object Instrument {
+    val source = "http://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/"
+    val list = HashMap(
+        "Piano" -> (2, "bright_acoustic_piano"),
+        "Clavinet" -> (8, "clavinet"),
+        "Guitar" -> (26, "acoustic_guitar_steel"),
+        // Violin sounds ok only with short length (max 0.25)
+        // "Violin" -> (41, "violin") 
+    )
 }
 
-case object Piano extends Instrument("piano") {
-    @Override
-    def attack() : Double = 0.002;
-
-    @Override
-    def dampen(sampleRate: Double, frequency: Double, volume: Double) : Double = {
-        Math.pow(0.5*Math.log((frequency*volume)/sampleRate),2)
+class Instrument(val name: String) {
+    if( !Instrument.list.contains(name) ) {
+        throw new IllegalArgumentException("Instrument not found") 
     }
-
-    @Override
-    def wave(i: Int, sampleRate: Double, frequency: Double) : Double = {
-        // Pure dark magic
-        val base = (y: Int, x: Double) => Math.sin(2 * Math.PI * ((y.toDouble / sampleRate) * frequency) + x)
-        val modulate = (y: Int, x: Double) => Math.sin(4 * Math.PI * ((y.toDouble / sampleRate) * frequency) + x)
-        modulate(i, 
-            Math.pow(base(i, 0), 2) +
-                    (0.75 * base(i, 0.25)) +
-                    (0.1 * base(i, 0.5)) 
-        )
-    }
-}
-
-case object Organ extends Instrument("organ") {
-    @Override
-    def attack() : Double = 0.3;
-
-    @Override
-    def dampen(sampleRate: Double, frequency: Double, volume: Double) : Double = {
-       1+(frequency * 0.01)
-    }
-
-    @Override
-    def wave(i: Int, sampleRate: Double, frequency: Double) : Double = {
-        // Pure dark magic
-        val base = (y: Int, x: Double) => Math.sin(2 * Math.PI * ((y.toDouble / sampleRate) * frequency) + x)
-        val modulate = (y: Int, x: Double) => Math.sin(4 * Math.PI * ((y.toDouble / sampleRate) * frequency) + x)
-        modulate(i, 
-                base(i, 0) +
-				0.5*base(i, 0.25) +
-				0.25*base(i, 0.5)
-        )
-    }
+    val codeName: String = Instrument.list(name)._2
+    val code: Int = Instrument.list(name)._1
 }

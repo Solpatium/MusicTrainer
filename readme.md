@@ -1,6 +1,6 @@
 # Music trainer
 
-Open index.html after compilation to see results (you have to use `fullOptJS` first).
+Open index.html after compilation to see results (you have to use `fastOptJS` first).
 
 ### Node modules
 Install angular dependencies.

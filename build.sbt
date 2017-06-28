@@ -2,6 +2,8 @@ enablePlugins(ScalaJSPlugin)
 enablePlugins(Angulate2Plugin)
 
 libraryDependencies += "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
+libraryDependencies += "org.scalatest" %%% "scalatest" % "3.0.0" % "test"
+libraryDependencies += "org.scalamock" %%% "scalamock-scalatest-support" % "3.5.0" % Test
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
