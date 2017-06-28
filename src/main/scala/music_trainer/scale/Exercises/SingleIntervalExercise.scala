@@ -7,14 +7,10 @@ import scala.util.Random
 /**
   * Created by maksymilian on 08/06/2017.
   */
-class SingleIntervalExercise(val player: Player) extends Exercise{
+class SingleIntervalExercise() extends Exercise{
   val intervalNum: Int = Random.nextInt(24) - 12
   val interval: (Note, Note) = generateInterval
   val track:Track = generateTrack
-  /**
-    * use this method to play the excercise
-    */
-  override def play(): Unit = player.play(track)
 
   /**
     * this method returns all answers for the exercise as a map[String,List[Answer] ]. One exercise may have more than 1 correct
@@ -22,7 +18,7 @@ class SingleIntervalExercise(val player: Player) extends Exercise{
     * if the set of right answers is correct (ex. answers are swapped). Every answer has a field isCorrect which specifies which
     * answer is the correct one.
     */
-  override def getAnswers: mutable.Map[String, List[Answer]] = mutable.Map(SingleIntervalExercise.ANSWER -> ExerciseHelper.generateAnswersSet(intervalNum, 12))
+  override def getAnswers: mutable.Map[String, List[Answer]] = mutable.Map(SingleIntervalExercise.ANSWER -> IntervalAnswer.generateAnswersSet(intervalNum, 12))
 
   private def generateInterval: (Note,Note) = {
     val note:Note = ExerciseHelper generateRandomNote Nil
