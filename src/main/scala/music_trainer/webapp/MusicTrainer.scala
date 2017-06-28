@@ -3,6 +3,10 @@ package music_trainer.webapp
 import music_trainer.scale.Exercises._
 import music_trainer.scale.Track
 import org.scalajs.jquery.jQuery
+import music_trainer.visualization.Visualization
+import org.scalajs.dom
+import org.scalajs.dom.Window
+import org.scalajs.dom.html
 
 import scala.scalajs.js.JSApp
 import music_trainer.scale._
@@ -13,6 +17,7 @@ object MusicTrainer extends JSApp {
   }
 
   def scaleDemo() {
+    val vis = new Visualization(dom.document.getElementById(Visualization.id).asInstanceOf[html.Canvas], Array(0, 0.1, 0.2) )
     val $notes = jQuery("#notes")
     val $octave = jQuery("#octave")
     val $octavePlayer = jQuery("#whole-octave")
