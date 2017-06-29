@@ -74,10 +74,15 @@ class ExerciseView(){
 
     ExerciseTypes(num) match {
       case ExerciseTypes.DualInterval => exercise = new DualIntervalExercise()
-      case ExerciseTypes.DominantEasy => exercise = new DominantExercise(1)
-      case ExerciseTypes.DominantMedium => exercise = new DominantExercise(2)
-      case ExerciseTypes.DominantHard => exercise = new DominantExercise(3)
-      case ExerciseTypes.SingleInterval => exercise = new SingleIntervalExercise()
+      case ExerciseTypes.DominantEasy => exercise = new DominantExercise(0)
+      case ExerciseTypes.DominantMedium => exercise = new DominantExercise(1)
+      case ExerciseTypes.DominantHard => exercise = new DominantExercise(2)
+      case ExerciseTypes.SingleIntervalEasyFirst => exercise = new SingleIntervalExercise(0)
+      case ExerciseTypes.SingleIntervalMediumFirst => exercise = new SingleIntervalExercise(1)
+      case ExerciseTypes.SingleIntervalHardFirst => exercise = new SingleIntervalExercise(2)
+      case ExerciseTypes.SingleIntervalEasySecond => exercise = new SingleIntervalExercise(3)
+      case ExerciseTypes.SingleIntervalMediumSecond => exercise = new SingleIntervalExercise(4)
+      case ExerciseTypes.SingleIntervalHardSecond => exercise = new SingleIntervalExercise(5)
       case ExerciseTypes.BaseSquareInterval => exercise = new BaseSquareIntervalExercise()
     }
 
@@ -88,7 +93,7 @@ class ExerciseView(){
       answersList.push(AnswerOptions(name, name, options))
     }
     answersBlocks = answersName.size
-    setTimeout(1) { 
+    setTimeout(1) {
       playExercise()
     }
   }

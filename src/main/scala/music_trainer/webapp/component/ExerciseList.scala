@@ -80,11 +80,16 @@ class ExerciseList(){
 
   val options = js.Array(
                           ExerciseItemDefinition(ExerciseTypes.toString(DualInterval), Hardness.Easy, "Latwe cwiczenie", DualInterval.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(SingleInterval), Hardness.Hard, "Trudne cwiczenie", SingleInterval.id),
                           ExerciseItemDefinition(ExerciseTypes.toString(DominantEasy), Hardness.Easy, "Trudne cwiczenie", DominantEasy.id),
                           ExerciseItemDefinition(ExerciseTypes.toString(DominantMedium), Hardness.Medium, "Trudne cwiczenie", DominantMedium.id),
                           ExerciseItemDefinition(ExerciseTypes.toString(DominantHard), Hardness.Hard, "Trudne cwiczenie", DominantHard.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(BaseSquareInterval), Hardness.Medium, "Średnie cwiczenie", BaseSquareInterval.id)
+                          ExerciseItemDefinition(ExerciseTypes.toString(BaseSquareInterval), Hardness.Medium, "Średnie cwiczenie", BaseSquareInterval.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalEasyFirst), Hardness.Easy, "Trudne cwiczenie", SingleIntervalEasyFirst.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalMediumFirst), Hardness.Medium, "Trudne cwiczenie", SingleIntervalMediumFirst.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalHardFirst), Hardness.Hard, "Trudne cwiczenie", SingleIntervalHardFirst.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalEasySecond), Hardness.Easy, "Trudne cwiczenie", SingleIntervalEasySecond.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalMediumSecond), Hardness.Medium, "Trudne cwiczenie", SingleIntervalMediumSecond.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalHardSecond), Hardness.Hard, "Trudne cwiczenie", SingleIntervalHardSecond.id)
                         )
 
   val instrumentNames = HashMap(

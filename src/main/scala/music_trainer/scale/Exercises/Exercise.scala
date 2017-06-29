@@ -124,7 +124,9 @@ object ExerciseHelper {
 
 object ExerciseTypes extends Enumeration{
   type ExerciseTypes = Value
-  val BaseSquareInterval, DominantEasy, DominantMedium, DominantHard, DualInterval, SingleInterval = Value
+  val BaseSquareInterval, DominantEasy, DominantMedium, DominantHard, DualInterval,
+      SingleIntervalEasyFirst, SingleIntervalMediumFirst, SingleIntervalHardFirst,
+      SingleIntervalEasySecond, SingleIntervalMediumSecond, SingleIntervalHardSecond = Value
 
   def toString(hardness: Value): String =
     hardness match {
@@ -133,6 +135,11 @@ object ExerciseTypes extends Enumeration{
       case DominantMedium => "Dominanta"
       case DominantHard => "Dominanta"
       case DualInterval => "Podwójny interwał"
-      case SingleInterval => "Pojedynczy interwał"
+      case SingleIntervalEasyFirst => "Pojedynczy interwał pierwsza oktawa"
+      case SingleIntervalMediumFirst => "Pojedynczy interwał pierwsza oktawa"
+      case SingleIntervalHardFirst => "Pojedynczy interwał pierwsza oktawa"
+      case SingleIntervalEasySecond => "Pojedynczy interwał druga oktawa"
+      case SingleIntervalMediumSecond => "Pojedynczy interwał druga oktawa"
+      case SingleIntervalHardSecond => "Pojedynczy interwał druga oktawa"
     }
 }
