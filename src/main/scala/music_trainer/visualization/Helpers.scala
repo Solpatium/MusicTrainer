@@ -39,16 +39,20 @@ trait randomInt {
 
 object Circle extends randomInt {
   val fancyColors = Array(
+    // WHITE
+    "#ffffff",
+    "#fdfdfd",
+    "#fdfeff"
     // BLUE
-    "#2e7da5",
-    "#399cce",
+    // "#2e7da5",
+    // "#399cce"
     // GREEN
-    "#8ddc9b",
-    "#38de1a",
+    // "#8ddc9b",
+    // "#38de1a",
     // RED
-    "#d63a3a",
+    // "#d63a3a",
     // YELLOW
-    "#ffeb00"
+    // "#ffeb00"
   )
   def random(position: Vec[Double], maxRadius: Double): Circle = {
     val movementLength = randomInt(1, 5).toDouble/200

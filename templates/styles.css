@@ -2,7 +2,7 @@
 body {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: #000000;
+    background-color: #51caa1;
     color: white;
     letter-spacing: 1px;
     background-size: 600% 600%;
@@ -11,6 +11,24 @@ body {
     animation: bacground 20s alternate infinite;
     margin: 0;
     padding: 0;
+}
+body.loading {
+    pointer-events: none;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body.loading:before {
+    content: "";
+    z-index: 100;
+    display: block;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    background-image: url("loader.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
 }
 @keyframes bacground {
     0%{background-color: #4dafda}
@@ -21,6 +39,24 @@ body {
     0%{background-color: #4dafda}
     50%{background-color: #51caa1;}
     100%{background-color: #ffc184}
+}
+body.loading {
+    pointer-events: none;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body.loading:before {
+    content: "";
+    z-index: 100;
+    display: block;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    background-image: url("loader.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
 }
 
 a {

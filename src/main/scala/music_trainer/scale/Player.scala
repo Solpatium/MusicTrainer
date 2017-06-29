@@ -12,12 +12,14 @@ import scala.scalajs.js.timers._
 
 
 class Player(val instrument: Instrument,
-             val velocity: Short = 127) {
+             val velocity: Short = 127,
+             val onLoad: Function0[_] = () => () ) {
     val properties = js.Dynamic.literal(
         "soundfontUrl" -> Instrument.source,
         "instrument" -> instrument.codeName,
         "onsuccess" -> (() => {
             MIDI.programChange(0, instrument.code-1)
+            onLoad()
         })
     );
     MIDI.loadPlugin(properties)

@@ -24,7 +24,6 @@
       <div id="final-score">
         <span class="current-score">{{score}}</span>/<span class="max-score">{{numOfExercises}}</span>
       </div>
-      <!--Jak Ci wygodniej, możesz albo dać sam paragraf z gotowym tekstem, albo dać klasę na content i ukryję te złe-->
       <ng-container [ngSwitch]="true">
         <p *ngSwitchCase="score == numOfExercises" class="message-full">Szacuneczek. Oto Twoja <a href="https://www.youtube.com/watch?v=kxopViU98Xo">nagroda</a>.</p>
         <p *ngSwitchCase="score != numOfExercises && score*100/numOfExercises >= 75" class="message-good">Nieźle, ale dasz radę zrobić to ćwiczenie lepiej!</p>
