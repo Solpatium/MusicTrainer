@@ -2,6 +2,9 @@ package music_trainer.webapp
 
 import angulate2.std._
 import angulate2.platformBrowser.BrowserModule
+import org.scalajs.dom.document
+import music_trainer.scale.Instrument
+import music_trainer.scale.Player
 
 import music_trainer.webapp.component._
 import org.scalajs.jquery.jQuery
@@ -19,7 +22,7 @@ class AppModule {
   selector = "my-app",
   templateUrl = "resources/app.html"
 )
-class AppComponent extends OnInit{
+class AppComponent extends OnInit {
 
   @ViewChild("ev")
   var exerciseView: ExerciseView = _
@@ -36,5 +39,6 @@ class AppComponent extends OnInit{
     exerciseView.changeExercise(num, item.numOfExercises, item.instrument)
   }
 
-   override def ngOnInit(): Unit = { jQuery("body").toggleClass("loading", false) }
+  override def ngOnInit(): Unit = { new Player(new Instrument("Piano"), 127, () => document.body.classList.remove("loading")); }
+
 }

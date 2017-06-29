@@ -79,22 +79,22 @@ class ExerciseList(){
   import music_trainer.scale.Exercises.ExerciseTypes._
 
   val options = js.Array(
-                          ExerciseItemDefinition(ExerciseTypes.toString(DualInterval), Hardness.Easy, "Latwe cwiczenie", DualInterval.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(DominantEasy), Hardness.Easy, "Trudne cwiczenie", DominantEasy.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(DominantMedium), Hardness.Medium, "Trudne cwiczenie", DominantMedium.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(DominantHard), Hardness.Hard, "Trudne cwiczenie", DominantHard.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(BaseSquareInterval), Hardness.Medium, "Średnie cwiczenie", BaseSquareInterval.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalEasyFirst), Hardness.Easy, "Trudne cwiczenie", SingleIntervalEasyFirst.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalMediumFirst), Hardness.Medium, "Trudne cwiczenie", SingleIntervalMediumFirst.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalHardFirst), Hardness.Hard, "Trudne cwiczenie", SingleIntervalHardFirst.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalEasySecond), Hardness.Easy, "Trudne cwiczenie", SingleIntervalEasySecond.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalMediumSecond), Hardness.Medium, "Trudne cwiczenie", SingleIntervalMediumSecond.id),
-                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalHardSecond), Hardness.Hard, "Trudne cwiczenie", SingleIntervalHardSecond.id)
+                          ExerciseItemDefinition(ExerciseTypes.toString(DualInterval), Hardness.Medium, ExerciseTypes.content(DualInterval), DualInterval.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(DominantEasy), Hardness.Easy, ExerciseTypes.content(DominantEasy), DominantEasy.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(DominantMedium), Hardness.Medium, ExerciseTypes.content(DominantMedium), DominantMedium.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(DominantHard), Hardness.Hard, ExerciseTypes.content(DominantHard), DominantHard.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(BaseSquareInterval), Hardness.Hard, ExerciseTypes.content(BaseSquareInterval), BaseSquareInterval.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalEasyFirst), Hardness.Easy, ExerciseTypes.content(SingleIntervalEasyFirst), SingleIntervalEasyFirst.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalMediumFirst), Hardness.Medium, ExerciseTypes.content(SingleIntervalMediumFirst), SingleIntervalMediumFirst.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalHardFirst), Hardness.Hard, ExerciseTypes.content(SingleIntervalHardFirst), SingleIntervalHardFirst.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalEasySecond), Hardness.Easy, ExerciseTypes.content(SingleIntervalEasySecond), SingleIntervalEasySecond.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalMediumSecond), Hardness.Medium, ExerciseTypes.content(SingleIntervalMediumSecond), SingleIntervalMediumSecond.id),
+                          ExerciseItemDefinition(ExerciseTypes.toString(SingleIntervalHardSecond), Hardness.Hard, ExerciseTypes.content(SingleIntervalHardSecond), SingleIntervalHardSecond.id)
                         )
 
   val instrumentNames = HashMap(
-      "Piano" -> "Pianion",
-      "Clavinet" -> "clavinet/Klarnet?????",
+      "Piano" -> "Pianino",
+      "Clavinet" -> "Syntezator",
       "Guitar" -> "Gitara"
   )
 

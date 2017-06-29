@@ -57,8 +57,8 @@ case class DualIntervalExercise() extends Exercise {
 }
 
 object DualIntervalExercise {
-  val ANSWER_BOTTOM_NAME = "bottom"
-  val ANSWER_TOP_NAME = "top"
+  val ANSWER_BOTTOM_NAME = "Interwał dolny:"
+  val ANSWER_TOP_NAME = "Interwał górny"
   /**
     * minimal note duration
     */

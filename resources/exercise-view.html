@@ -7,13 +7,13 @@
     <h4 *ngIf="tasks > numOfExercises" id="stage-subtitle">Zawsze możesz spróbować jeszcze raz</h4>
   </header>
   <div *ngIf="tasks <= numOfExercises" id="content">
-    <canvas #visualizer id="visualizer" height="500" style="width:100%;"></canvas>
     <div id="score">
       <span class="current-score">{{score}}</span>/<span class="max-score">{{numOfExercises}}</span>
     </div>
     <div id="player-wrapper">
       <button id="player" (click)="playExercise()">Odtwórz</button>
     </div>
+    <canvas #visualizer id="visualizer" height="400" style="width:100%;"></canvas>
     <answers-list #answerslistid [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
     <button *ngIf="!isValidated" class="button" id="validate-answers" (click)="check()">Sprawdź</button>
     <button *ngIf="isValidated && tasks != numOfExercises" class="button" id="validate-answers" (click)="nextTask()">Następne</button>

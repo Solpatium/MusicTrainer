@@ -9,7 +9,7 @@ body {
     -webkit-animation: bacground 20s infinite;
     -moz-animation: bacground 20s infinite;
     animation: bacground 20s alternate infinite;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 0;
 }
 body.loading {
@@ -39,6 +39,9 @@ body.loading:before {
     0%{background-color: #4dafda}
     50%{background-color: #51caa1;}
     100%{background-color: #ffc184}
+}
+body.epic {
+    animation-duration: 0.9s;
 }
 body.loading {
     pointer-events: none;
@@ -115,7 +118,15 @@ button:hover,
     margin-top: 15px;
     float: left;
     margin-right: 20px;
+    cursor: pointer;
 }
+
+#logo:hover {
+    -ms-transform: rotate(-7deg); /* IE 9 */
+    -webkit-transform: rotate(-7deg); /* Chrome, Safari, Opera */
+    transform: rotate(-7deg);
+}
+
 
 #logo path {
     fill: #5f1111
@@ -156,23 +167,9 @@ header {
 .container {
     display: block;
     list-style: none;
-    /*     border: solid white 1px; */
-    /*     margin-top: 20px; */
-    /*     background-color:#34bdbd; */
-    /*     border-radius: 10px; */
     padding: 20px;
-    /*     border-radius: 30px; */
-    /*     -webkit-filter: blur(20px); */
-    /*     -moz-filter: blur(20px); */
-    /*     -o-filter: blur(20px); */
-    /*     -ms-filter: blur(20px); */
-    /*     filter: blur(5px); */
-    /*     opacity: 0.4; */
-    /*transition: border 1s;*/
     border-bottom: dashed 5px;
     border-bottom: solid 1px;
-/*     border-top: solid 1px; */
-    /* border: solid 5px; */
     margin-bottom: 20px;
     position: relative;
     background-color: rgba(0, 0, 0, 0.2);
@@ -195,9 +192,6 @@ header {
 }
 .select-exercise {
     float: right;
-}
-.exercise:hover {
-/*     border-color: rgba(255, 255, 255, 0.48); */
 }
 
 .exercise-title {
@@ -224,6 +218,10 @@ header {
     text-align: center;
 }
 
+.button.answer {
+    margin-bottom: 10px;
+}
+
 .validated .hidden-radio:checked + .answer:not(.good) {
     background-color: #ff7373;
     border-color: #ff7373;
@@ -239,6 +237,7 @@ header {
 #score {
     text-align: right;
     font-size: 1.5em;
+    float: right;
 }
 
 
