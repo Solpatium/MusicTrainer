@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Music trainer</title>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/2.1.1/jquery.js"></script>
+  </head>
+  <body>
+    <div id="notes"></div>
+    <div>
+      <select id="octave">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option selected>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+      </select>
+      <select id="instrument">
+        <option selected>Piano</option>
+        <option>Organ</option>
+      </select>
+    </div>
+    <button id="whole-octave">
+      Play whole octave using track
+    </button>
+    <button id="simple-exercise">
+      Play simple Dual Exercise
+    </button>
+    <!-- Include Scala.js compiled code -->
+    <script type="text/javascript" src="./target/scala-2.12/scala-js-tutorial-opt.js"></script>
+  </body>
+</html>

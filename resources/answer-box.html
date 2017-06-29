@@ -1,0 +1,7 @@
+<li class="container answer-wrapper">
+  <h4 class="answer-title">{{title}}</h4>
+  <ng-container *ngFor="let option of options">
+    <input [disabled]="isValidated" class="hidden-radio" type="radio" name={{answerName}} id={{answerName}}{{option.id}} value="option.id" (change)="onSelectionChange(option.isCorrect)">
+    <label for={{answerName}}{{option.id}} [ngClass]="{'button': 1, 'answer': 1, 'good': option.isCorrect}">{{option.name}}</label>
+  </ng-container>
+</li>

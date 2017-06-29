@@ -15,7 +15,7 @@ class BaseSquareIntervalExercise() extends Exercise {
   private val harmonicIntervalNum =
     ExerciseHelper.getSimpleInterval(firstInterval._1, secondInterval._1) ::
       ExerciseHelper.getSimpleInterval(firstInterval._2, secondInterval._2) :: Nil
-  var track:Track = generateTrack()
+  val track:Track = generateTrack()
 
   /**
     * this method returns all answers for the exercise as a map[String,List[Answer] ]. One exercise may have more than 1 correct

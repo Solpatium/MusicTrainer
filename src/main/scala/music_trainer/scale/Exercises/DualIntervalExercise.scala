@@ -12,9 +12,9 @@ import scala.util.Random
 case class DualIntervalExercise() extends Exercise {
   import DualIntervalExercise._
   private val intervalNum = Random.nextInt(24) - 12 :: Random.nextInt(24) - 12 :: Nil
-  var firstInterval: (Note, Note) = generateInterval(intervalNum.head)
-  var secondInterval: (Note, Note) = generateInterval(intervalNum(1), firstInterval._1 :: firstInterval._2:: Nil)
-  var track:Track = generateTrack()
+  val firstInterval: (Note, Note) = generateInterval(intervalNum.head)
+  val secondInterval: (Note, Note) = generateInterval(intervalNum(1), firstInterval._1 :: firstInterval._2:: Nil)
+  val track:Track = generateTrack()
 
   override def getAnswers: mutable.Map[String,List[Answer]] = {
     import IntervalAnswer._

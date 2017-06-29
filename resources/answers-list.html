@@ -1,0 +1,11 @@
+<div>
+  <ul [ngClass]="{'list': 1, 'answers': 1, 'validated': isValidated }">
+    <answer-box *ngFor="let answer of answersList; let i = index"
+      [(title)]="answer.title"
+      [(answerName)]="answer.name"
+      [(options)]="answer.options"
+      [(isValidated)]="isValidated"
+      (answerChanged)="updateAnswer($event)">
+    </answer-box>
+  </ul>
+</div>

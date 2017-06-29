@@ -17,8 +17,7 @@ class Visualization(val canvas: html.Canvas, val times: Iterable[Double]) extend
   var circles = mutable.Buffer[Circle]()
   Visualization.resizeCanvas()
 
-  // Add event listener for click
-  canvas.addEventListener("click", (e: dom.Event) => {
+  def play {
     if( !animating ) {
       var i = 0
       for(time <- times) {
@@ -26,21 +25,24 @@ class Visualization(val canvas: html.Canvas, val times: Iterable[Double]) extend
         setTimeout(time*1000) {
           destroyCircle(circle)
         }
-        
+
         i += 1
       }
       animate
     }
-  })
+  }
+
+  // Add event listener for click
+  canvas.addEventListener("click", (e: dom.Event) => play)
   // If canvas changes then it should be redrawn
   canvas.addEventListener("change", (e: dom.Event) => draw)
-  
+
   // Draw sounds
   init()
-  
+
   def width() = canvas.width
   def height() = canvas.height
-  
+
   def animate {
     animating = true
     draw
@@ -51,7 +53,7 @@ class Visualization(val canvas: html.Canvas, val times: Iterable[Double]) extend
       js.Dynamic.global.window.requestAnimationFrame(()=>animate)
     }
   }
-  
+
   def draw() {
     context.clearRect(0, 0, width, height);
     circles = circles.filter( (c) => {
@@ -60,7 +62,7 @@ class Visualization(val canvas: html.Canvas, val times: Iterable[Double]) extend
       c.radius>=1
     } )
   }
-  
+
   def init() {
     circles.clear
     for( i <- 0 until times.size ) {
@@ -69,7 +71,7 @@ class Visualization(val canvas: html.Canvas, val times: Iterable[Double]) extend
     }
     draw()
   }
-  
+
   private def destroyCircle(circle: Circle) {
     // First grow, then shrink
     circle.sizeMultiplier = 1.05;
@@ -79,7 +81,7 @@ class Visualization(val canvas: html.Canvas, val times: Iterable[Double]) extend
       circle.sizeMultiplier = newCircle.sizeMultiplier
       circle.movement = newCircle.movement
     }
-    
+
     // Add new circles
     for( _ <- 0 to 100 )
       circles prepend Circle.random(circle.position, circle.radius)

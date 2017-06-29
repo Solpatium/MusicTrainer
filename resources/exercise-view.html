@@ -1,0 +1,37 @@
+<ng-container *ngIf="num != -1">
+  <header>
+    <img id="logo" src="resources/note.png" (click)="returnMenu.emit(0)" style="cursor: pointer;">
+
+    <h3 id="stage-title">{{title}}</h3>
+    <h4 id="stage-subtitle">Wybierz prawidłowe odpowiedzi</h4>
+  </header>
+  <div *ngIf="tasks <= numOfExercises" id="content">
+    <canvas #visualizer id="visualizer" height="500" style="width:100%;"></canvas>
+    <div id="score">
+      <span class="current-score">{{score}}</span>/<span class="max-score">{{numOfExercises}}</span>
+    </div>
+    <div id="player-wrapper">
+      <button id="player" (click)="playExercise()">Odtwórz</button>
+    </div>
+    <answers-list #answerslistid [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
+    <button *ngIf="!isValidated" class="button" id="validate-answers" (click)="check()">Sprawdź</button>
+    <button *ngIf="isValidated && tasks != numOfExercises" class="button" id="validate-answers" (click)="nextTask()">Następne</button>
+    <button *ngIf="isValidated && tasks == numOfExercises" class="button" id="validate-answers" (click)="tasks=tasks+1">Wyniki</button>
+  </div>
+  <div *ngIf="tasks > numOfExercises" id="content">
+    <div class="container answer-wrapper">
+      Twój wynik to:
+      <div id="final-score">
+        <span class="current-score">{{score}}</span>/<span class="max-score">{{numOfExercises}}</span>
+      </div>
+      <!--Jak Ci wygodniej, możesz albo dać sam paragraf z gotowym tekstem, albo dać klasę na content i ukryję te złe-->
+      <ng-container [ngSwitch]="true">
+        <p *ngSwitchCase="score == numOfExercises" class="message-full">Szacuneczek. Oto Twoja <a href="https://www.youtube.com/watch?v=kxopViU98Xo">nagroda</a>.</p>
+        <p *ngSwitchCase="score != numOfExercises && score*100/numOfExercises >= 75" class="message-good">Nieźle, ale dasz radę zrobić to ćwiczenie lepiej!</p>
+        <p *ngSwitchCase="score*100/numOfExercises < 75 && score*100/numOfExercises >= 50" class="message-average">Nie jest najgorzej, ale mogłoby być trochę lepiej.</p>
+        <p *ngSwitchDefault class="message-bad">Lepiej ćwicz dalej...</p>
+      </ng-container>
+    </div>
+    <button class="button" id="go-to-list" (click)="returnMenu.emit(0)">Menu</button>
+  </div>
+</ng-container>

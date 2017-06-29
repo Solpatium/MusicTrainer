@@ -1,6 +1,7 @@
 package music_trainer.scale.Exercises
 
 import music_trainer.scale.Note
+import music_trainer.scale.Track
 
 import scala.collection.mutable
 import scala.util.Random
@@ -20,6 +21,7 @@ trait Exercise {
     * answer is the correct one.
     */
   def getAnswers:mutable.Map[String,List[Answer]]
+  val track: Track
 }
 
 class DominantAnswer(var position:Int, var isCorrectAnswer:Boolean) extends Answer{
@@ -120,4 +122,24 @@ object ExerciseHelper {
 
 }
 
+object ExerciseTypes extends Enumeration{
+  type ExerciseTypes = Value
+  val BaseSquareInterval, DominantEasy, DominantMedium, DominantHard, DualInterval,
+      SingleIntervalEasyFirst, SingleIntervalMediumFirst, SingleIntervalHardFirst,
+      SingleIntervalEasySecond, SingleIntervalMediumSecond, SingleIntervalHardSecond = Value
 
+  def toString(hardness: Value): String =
+    hardness match {
+      case BaseSquareInterval => "Kwadrat w kole oktawy??????"
+      case DominantEasy => "Dominanta"
+      case DominantMedium => "Dominanta"
+      case DominantHard => "Dominanta"
+      case DualInterval => "Podwójny interwał"
+      case SingleIntervalEasyFirst => "Pojedynczy interwał pierwsza oktawa"
+      case SingleIntervalMediumFirst => "Pojedynczy interwał pierwsza oktawa"
+      case SingleIntervalHardFirst => "Pojedynczy interwał pierwsza oktawa"
+      case SingleIntervalEasySecond => "Pojedynczy interwał druga oktawa"
+      case SingleIntervalMediumSecond => "Pojedynczy interwał druga oktawa"
+      case SingleIntervalHardSecond => "Pojedynczy interwał druga oktawa"
+    }
+}

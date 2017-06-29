@@ -12,7 +12,7 @@ body {
     margin: 0;
     padding: 0;
 }
-@keyframes bacground { 
+@keyframes bacground {
     0%{background-color: #4dafda}
     50%{background-color: #51caa1;}
     100%{background-color: #ffc184}
@@ -65,9 +65,9 @@ select, button, .button {
 
 .hidden-radio {
     display: none;
-} 
+}
 
-select:hover, 
+select:hover,
 button:hover,
 .hidden-radio:checked + .button {
     background-color: white;
@@ -101,7 +101,7 @@ button:hover,
     color: #ffffff;
 }
 
-header { 
+header {
     position: relative;
     padding: 20px 0;
 /*     border-bottom: dashed white 5px;  */
@@ -115,7 +115,7 @@ header {
 
 /* LIST */
 #exercises-list {
-    padding: 0;   
+    padding: 0;
 }
 .container {
     display: block;
@@ -149,10 +149,13 @@ header {
 }
 
 .exercise .hardness-easy:before {
-    content: "☆☆";
+    content: "☆☆★";
 }
 .exercise .hardness-medium:before {
-    content: "☆";
+    content: "☆★★";
+}
+.exercise .hardness-hard:before {
+    content: "★★★";
 }
 .select-exercise {
     float: right;
@@ -177,7 +180,7 @@ header {
 /* EXERCISE */
 #validate-answers {
     margin: auto;
-    display: block; 
+    display: block;
 }
 
 .answer-wrapper {
