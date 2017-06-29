@@ -3,7 +3,8 @@
     <img id="logo" src="resources/note.png" (click)="returnMenu.emit(0)" style="cursor: pointer;">
 
     <h3 id="stage-title">{{title}}</h3>
-    <h4 id="stage-subtitle">Wybierz prawidłowe odpowiedzi</h4>
+    <h4 *ngIf="tasks <= numOfExercises" id="stage-subtitle">Wybierz prawidłowe odpowiedzi</h4>
+    <h4 *ngIf="tasks > numOfExercises" id="stage-subtitle">Zawsze możesz spróbować jeszcze raz</h4>
   </header>
   <div *ngIf="tasks <= numOfExercises" id="content">
     <canvas #visualizer id="visualizer" height="500" style="width:100%;"></canvas>
