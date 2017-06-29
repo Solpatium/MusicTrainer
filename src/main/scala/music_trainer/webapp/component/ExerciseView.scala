@@ -15,6 +15,7 @@ import scala.collection.mutable
 import org.scalajs.dom
 import org.scalajs.dom.html
 import music_trainer.visualization.Visualization
+import scala.scalajs.js.timers._
 
 @Component(
   selector = "exercise-view",
@@ -87,12 +88,17 @@ class ExerciseView(){
       answersList.push(AnswerOptions(name, name, options))
     }
     answersBlocks = answersName.size
-    playExercise()
+    setTimeout(1) { 
+      playExercise()
+    }
   }
 
   def playExercise(){
     var canvas = dom.document.getElementById("visualizer").asInstanceOf[html.Canvas]
-    var visual = new Visualization(canvas, exercise.track.sounds.keys)
+    if(canvas != null){
+      var visual = new Visualization(canvas, exercise.track.sounds.keys)
+      visual.play
+    }
     player.play(exercise.track)
   }
 

@@ -6,7 +6,7 @@
     <h4 id="stage-subtitle">Wybierz prawidłowe odpowiedzi</h4>
   </header>
   <div *ngIf="tasks <= numOfExercises" id="content">
-    <canvas id="visualizer" height="500" style="width:100%;"></canvas>
+    <canvas #visualizer id="visualizer" height="500" style="width:100%;"></canvas>
     <div id="score">
       <span class="current-score">{{score}}</span>/<span class="max-score">{{numOfExercises}}</span>
     </div>
