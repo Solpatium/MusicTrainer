@@ -93,8 +93,8 @@ class ExerciseList(){
                         )
 
   val instrumentNames = HashMap(
-      "Piano" -> "Pianion",
-      "Clavinet" -> "clavinet/Klarnet?????",
+      "Piano" -> "Pianino",
+      "Clavinet" -> "Syntezator",
       "Guitar" -> "Gitara"
   )
 
