@@ -40,6 +40,9 @@ body.loading:before {
     50%{background-color: #51caa1;}
     100%{background-color: #ffc184}
 }
+body.epic {
+    animation-duration: 0.9s;
+}
 body.loading {
     pointer-events: none;
     height: 100vh;
