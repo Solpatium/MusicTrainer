@@ -13,7 +13,7 @@
     <div id="player-wrapper">
       <button id="player" (click)="playExercise()">Odtwórz</button>
     </div>
-    <canvas #visualizer id="visualizer" height="400" style="width:100%;"></canvas>
+    <canvas #visualizer id="visualizer" height="400"></canvas>
     <answers-list #answerslistid [(isValidated)]="isValidated" [(answersList)]="answersList"></answers-list>
     <button *ngIf="!isValidated" class="button" id="validate-answers" (click)="check()">Sprawdź</button>
     <button *ngIf="isValidated && tasks != numOfExercises" class="button" id="validate-answers" (click)="nextTask()">Następne</button>
