@@ -103,7 +103,7 @@ class ExerciseList(){
   for(i <- Instrument.list.keys)
     instruments.push(InstrumentDefinition(i, instrumentNames(i)))
 
-  var instrument: String = "Guitar"
+  var instrument: String = "Piano"
 }
 
 
