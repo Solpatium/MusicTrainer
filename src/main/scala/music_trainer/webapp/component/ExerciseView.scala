@@ -17,6 +17,8 @@ import org.scalajs.dom.html
 import music_trainer.visualization.Visualization
 import scala.scalajs.js.timers._
 
+import org.scalajs.jquery.jQuery
+
 @Component(
   selector = "exercise-view",
   templateUrl = "resources/exercise-view.html"
@@ -40,6 +42,7 @@ class ExerciseView(){
   var answersBlocks: Int = 0
   var title: String = ""
   var visual: Visualization = _
+  var loading: Boolean = false
 
   var answersList: js.Array[AnswerOptions] = js.Array[AnswerOptions]()
 
@@ -48,11 +51,18 @@ class ExerciseView(){
     score = 0
     numOfExercises = newNumOfExercises
     tasks = 0
-    var player = new Player(new Instrument(newInstrument))
+    loading = true
+    setTimeout(1) {
+      jQuery("body").toggleClass("loading", true)
 
-    title = ExerciseTypes.toString(ExerciseTypes(num))
+      var player = new Player(new Instrument(newInstrument), onLoad = () => {
+        jQuery("body").toggleClass("loading", false)
+        loading = false
+        })
 
-    nextTask()
+      title = ExerciseTypes.toString(ExerciseTypes(num))
+      nextTask()
+    }
   }
 
   def stopExercise(){
@@ -67,6 +77,12 @@ class ExerciseView(){
   }
 
   def nextTask(){
+    if(loading){
+      setTimeout(100) {
+        nextTask()
+      }
+      return
+    }
     tasks += 1
     isValidated = false
     if(answersForm != js.undefined) answersForm.resetAnswers()
@@ -93,6 +109,7 @@ class ExerciseView(){
       answersList.push(AnswerOptions(name, name, options))
     }
     answersBlocks = answersName.size
+
     setTimeout(1) {
       playExercise()
     }
