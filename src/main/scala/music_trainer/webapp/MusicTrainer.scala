@@ -38,6 +38,6 @@ class AppComponent extends OnInit {
     exerciseView.changeExercise(num, item.numOfExercises, item.instrument)
   }
 
-  override def ngOnInit(): Unit = { document.body.classList.remove("loading"); }
+  override def ngOnInit(): Unit = { new Player(new Instrument("Piano"), 127, () => document.body.classList.remove("loading")); }
 
 }
