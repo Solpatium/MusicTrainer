@@ -63,10 +63,10 @@ class BaseSquareIntervalExercise() extends Exercise {
 }
 
 object BaseSquareIntervalExercise {
-  val ANSWER_TOP_NAME = "Top"
-  val ANSWER_BOTTOM_NAME = "Bottom"
-  val ANSWER_HARMONIC_FIRST_NAME = "First Harmonic"
-  val ANSWER_HARMONIC_SECOND_NAME = "Second Harmonic"
+  val ANSWER_TOP_NAME = "Interwał melodyczny górny:"
+  val ANSWER_BOTTOM_NAME = "Interwał melodyczny dolny:"
+  val ANSWER_HARMONIC_FIRST_NAME = "Interwał pierwszy harmoniczny:"
+  val ANSWER_HARMONIC_SECOND_NAME = "Interwał drugi harmoniczny:"
   /**
     * minimal note duration
     */

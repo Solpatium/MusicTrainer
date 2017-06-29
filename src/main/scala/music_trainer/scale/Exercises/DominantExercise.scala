@@ -68,7 +68,7 @@ class DominantExercise(val difficultyLevel: Int) extends Exercise{
 
 object DominantExercise {
   val intervals = List(0,4,7,10)
-  val ANSWER_NAME = "Dominant"
+  val ANSWER_NAME = "Przewrót dominanty:"
   /**
     * minimal duration of a
     */
