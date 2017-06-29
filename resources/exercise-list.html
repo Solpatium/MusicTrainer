@@ -4,7 +4,7 @@
   <h3 id="stage-title">Lista wszytkich ćwiczeń</h3>
   <h4 id="stage-subtitle">Wybierz odpowiednie dla siebie</h4>
   <div id="settings">
-    <select #instrumentfield id="instrument">
+    <select #instrumentfield id="instrument" (change)="instrument=instrumentfield.value">
       <option *ngFor="let i of instruments" [value]="i.id">{{i.name}}</option>
     </select>
   </div>
@@ -17,7 +17,7 @@
         [(content)]="ex.content"
         [(optionId)]="ex.optionId"
         [(menuEm)]="menuSelected"
-        [(instrument)]="instrumentfield.value">
+        [(instrument)]="instrument">
     </exercise-item>
   </ul>
 </div>
