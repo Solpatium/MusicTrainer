@@ -7,19 +7,19 @@ import scala.util.Random
 /**
   * Created by maksymilian on 27/06/2017.
   * @param difficultyLevel - this sets the difficulty level of the exercise. Possible levels:
-  *                        1 - easy
-  *                        2 - medium
-  *                        3 - hard
+  *                        0 - easy
+  *                        1 - medium
+  *                        2 - hard
   */
 class DominantExercise(val difficultyLevel: Int) extends Exercise{
-  if(!(0 to 3).toList.contains(difficultyLevel)) throw new IllegalArgumentException("difficultyLevel must be 1, 2 or 3")
+  if(!(0 to 2).toList.contains(difficultyLevel)) throw new IllegalArgumentException("difficultyLevel must be 0, 1, or 2")
   import DominantExercise._
   val position: Int = Random.nextInt(4)
   var accord:List[Note] = generateAccord()
   val track:Track = generateTrack()
 
   def generateTrack():Track = {
-    if(Random.nextBoolean() || difficultyLevel == 1){
+    if(Random.nextBoolean() || difficultyLevel == 0){
       if(Random.nextBoolean()) {
         accord = accord.sortWith((x: Note, y: Note) => x.toAbsoluteInt > y.toAbsoluteInt)
       } else {
@@ -29,9 +29,9 @@ class DominantExercise(val difficultyLevel: Int) extends Exercise{
     val track:Track = new Track()
     var delay:Float = 0
     if(Random.nextBoolean()) {
-      delay = Random.nextFloat() / difficultyLevel
+      delay = Random.nextFloat() / (difficultyLevel + 1)
     }
-    val duration:Float = (MINIMAL_DURATION / difficultyLevel) + Random.nextFloat()
+    val duration:Float = (MINIMAL_DURATION / (difficultyLevel + 1)) + Random.nextFloat()
     var time = 0.0
     for(note <- accord){
       track.add(time, new Sound(note,duration))
