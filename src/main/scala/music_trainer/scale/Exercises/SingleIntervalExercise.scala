@@ -47,6 +47,6 @@ class SingleIntervalExercise(val difficultyLevel:Int) extends Exercise{
 }
 
 object SingleIntervalExercise {
-  val ANSWER: String = "Answer"
+  val ANSWER: String = "Interwał:"
   val MINIMAL_DURATION: Float = 1.2.toFloat
 }

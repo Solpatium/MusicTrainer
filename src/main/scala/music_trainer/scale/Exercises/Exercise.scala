@@ -130,16 +130,31 @@ object ExerciseTypes extends Enumeration{
 
   def toString(hardness: Value): String =
     hardness match {
-      case BaseSquareInterval => "Kwadrat w kole oktawy??????"
-      case DominantEasy => "Dominanta"
-      case DominantMedium => "Dominanta"
-      case DominantHard => "Dominanta"
-      case DualInterval => "Podwójny interwał"
-      case SingleIntervalEasyFirst => "Pojedynczy interwał pierwsza oktawa"
-      case SingleIntervalMediumFirst => "Pojedynczy interwał pierwsza oktawa"
-      case SingleIntervalHardFirst => "Pojedynczy interwał pierwsza oktawa"
-      case SingleIntervalEasySecond => "Pojedynczy interwał druga oktawa"
-      case SingleIntervalMediumSecond => "Pojedynczy interwał druga oktawa"
-      case SingleIntervalHardSecond => "Pojedynczy interwał druga oktawa"
+      case BaseSquareInterval => "Interwały w kwadracie"
+      case DominantEasy => "Dominanty Septymowe - poziom 1"
+      case DominantMedium => "Dominanty Septymowe - poziom 2"
+      case DominantHard => "Dominanty Septymowe - poziom 3"
+      case DualInterval => "Interwał podwójny"
+      case SingleIntervalEasyFirst => "Pojedynczy interwał w obrębie oktawy - poziom 1"
+      case SingleIntervalMediumFirst => "Pojedynczy interwał w obrębie oktawy - poziom 2"
+      case SingleIntervalHardFirst => "Pojedynczy interwał w obrębie oktawy - poziom 3"
+      case SingleIntervalEasySecond => "Pojedynczy interwał w obrębie 2 oktaw - poziom 1"
+      case SingleIntervalMediumSecond => "Pojedynczy interwał w obrębie 2 oktaw - poziom 2"
+      case SingleIntervalHardSecond => "Pojedynczy interwał w obrębie 2 oktaw - poziom 3"
+    }
+
+  def content(exerciseType: Value): String =
+    exerciseType match {
+      case BaseSquareInterval => "Ćwiczenie polega na określeniu interwałów malodycznych oraz harmonicznych pomiędzy 4 dźwiękami (melodyczny górny oraz dolny, a także harmoniczny pierwszy oraz drugi)"
+      case DominantEasy => "Ćwiczenie polega na rozpoznawaniu przewrotów akordów septymowych. Na tym poziomie akord będzie pojawiał się w wolnym tempie od w kolejności dźwięków od góry lub od dołu"
+      case DominantMedium => "Ćwiczenie polega na rozpoznawaniu przewrotów akordów septymowych. Na tym poziomie dźwięki akordu nie będą pojawiać się w kolejności, a tempo będzie szybsze"
+      case DominantHard => "Ćwiczenie polega na rozpoznawaniu przewrotów akordów septymowych. Na tym poziomie tempo będzie szybkie, a dźwięki akordu będą zwykle pojawiać się w różnej kolejności"
+      case DualInterval => "Ćwiczenie polega na określeniu interwałów malodycznych oraz harmonicznych pomiędzy 4 dźwiękami (melodyczny górny oraz dolny, a także harmoniczny pierwszy oraz drugi)"
+      case SingleIntervalEasyFirst => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie wolnym"
+      case SingleIntervalMediumFirst => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybszym"
+      case SingleIntervalHardFirst => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybkim"
+      case SingleIntervalEasySecond => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie wolnym"
+      case SingleIntervalMediumSecond => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybszym"
+      case SingleIntervalHardSecond => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybkim"
     }
 }
