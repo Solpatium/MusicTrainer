@@ -1,13 +1,8 @@
 <header>
-  <img id="logo" onclick="easterEgg()" src="resources/note.png">
+  <img id="logo" src="resources/note.png">
 
   <h3 id="stage-title">Lista wszystkich ćwiczeń</h3>
   <h4 id="stage-subtitle">Wybierz odpowiednie dla siebie</h4>
-  <div id="settings">
-    <select #instrumentfield id="instrument" (change)="instrument=instrumentfield.value">
-      <option *ngFor="let i of instruments" [value]="i.id">{{i.name}}</option>
-    </select>
-  </div>
 </header>
 <div id="content">
   <ul class="list" id="exercises-list">
