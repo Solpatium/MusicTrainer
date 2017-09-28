@@ -150,11 +150,11 @@ object ExerciseTypes extends Enumeration{
       case DominantMedium => "Ćwiczenie polega na rozpoznawaniu przewrotów akordów septymowych. Na tym poziomie dźwięki akordu nie będą pojawiać się w kolejności, a tempo będzie szybsze"
       case DominantHard => "Ćwiczenie polega na rozpoznawaniu przewrotów akordów septymowych. Na tym poziomie tempo będzie szybkie, a dźwięki akordu będą zwykle pojawiać się w różnej kolejności"
       case DualInterval => "Ćwiczenie polega na określeniu interwałów malodycznych oraz harmonicznych pomiędzy 4 dźwiękami (melodyczny górny oraz dolny, a także harmoniczny pierwszy oraz drugi)"
-      case SingleIntervalEasyFirst => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie wolnym"
-      case SingleIntervalMediumFirst => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybszym"
-      case SingleIntervalHardFirst => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybkim"
-      case SingleIntervalEasySecond => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie wolnym"
-      case SingleIntervalMediumSecond => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybszym"
-      case SingleIntervalHardSecond => "Ćwiczenie polega na rozpoznawaniu prostych interwałów w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybkim"
+      case SingleIntervalEasyFirst => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie wolnym"
+      case SingleIntervalMediumFirst => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybszym"
+      case SingleIntervalHardFirst => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybkim"
+      case SingleIntervalEasySecond => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie wolnym"
+      case SingleIntervalMediumSecond => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybszym"
+      case SingleIntervalHardSecond => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie dwóch oktaw, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybkim"
     }
 }
