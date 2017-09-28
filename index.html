@@ -46,18 +46,4 @@
   <body class="loading">
     <my-app></my-app>
   </body>
-  <script>
-    function easterEgg() {
-      MIDI.Player.loadFile("EPICSaxGuyLoop.mid", function() {
-        MIDI.loadPlugin({
-          instrument: "alto_sax",
-          onsuccess: function() {
-            MIDI.programChange(0, 65)
-            MIDI.Player.start()
-            jQuery("body").addClass("epic")
-          } 
-        });
-      });
-    }
-  </script>
 </html>
