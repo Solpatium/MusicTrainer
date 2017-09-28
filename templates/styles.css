@@ -247,3 +247,47 @@ header {
 #final-score {
     font-size: 2.2em;
 }
+
+.list.answers {
+  padding-left: 0;
+}
+
+@media (max-width: 780px) {
+    .exercise .hardness { 
+        position: static;
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .exercise-title {
+        text-align:center;
+    }
+    .exercise-content {
+        text-align: justify;
+    }
+    body {
+        animation: 0;
+    }
+    #visualizer {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    #stage-subtitle {
+        display: none;
+    }
+    .select-exercise {
+        float: none;
+        display: block;
+        margin: auto;
+        margin-top: 30px;
+    }
+    #stage-title {
+        font-size: 1.4em;
+        margin-bottom: 50px;
+    }
+    #logo {
+        max-width: 100px;
+    }
+}
