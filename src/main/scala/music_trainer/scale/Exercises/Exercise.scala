@@ -130,7 +130,7 @@ object ExerciseTypes extends Enumeration{
 
   def toString(hardness: Value): String =
     hardness match {
-      case BaseSquareInterval => "Interwały w kwadracie"
+      case BaseSquareInterval => "Kwadrat interwałowy"
       case DominantEasy => "Dominanty Septymowe - poziom 1"
       case DominantMedium => "Dominanty Septymowe - poziom 2"
       case DominantHard => "Dominanty Septymowe - poziom 3"
