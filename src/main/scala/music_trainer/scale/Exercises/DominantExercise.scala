@@ -41,7 +41,7 @@ class DominantExercise(val difficultyLevel: Int) extends Exercise{
   }
 
   def generateAccord():List[Note] = {
-    var octave = 4 + Random.nextInt(4)
+    var octave = 4 + Random.nextInt(3)
     var accordBase = Random.nextInt(12)
     var accord: List[Note] = Nil
     for(i <- 0 until position){
@@ -60,8 +60,8 @@ class DominantExercise(val difficultyLevel: Int) extends Exercise{
     * if the set of right answers is correct (ex. answers are swapped). Every answer has a field isCorrect which specifies which
     * answer is the correct one.
     */
-  override def getAnswers: mutable.Map[String, List[Answer]] = {
-    mutable.Map(ANSWER_NAME -> DominantAnswer.generateAnswersSet(this.position))
+  override def getAnswers: mutable.LinkedHashMap[String, List[Answer]] = {
+    mutable.LinkedHashMap(ANSWER_NAME -> DominantAnswer.generateAnswersSet(this.position))
   }
 }
 

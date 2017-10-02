@@ -149,7 +149,7 @@ object ExerciseTypes extends Enumeration{
       case DominantEasy => "Ćwiczenie polega na rozpoznawaniu przewrotów akordów septymowych. Na tym poziomie akord będzie pojawiał się w wolnym tempie od w kolejności dźwięków od góry lub od dołu"
       case DominantMedium => "Ćwiczenie polega na rozpoznawaniu przewrotów akordów septymowych. Na tym poziomie dźwięki akordu nie będą pojawiać się w kolejności, a tempo będzie szybsze"
       case DominantHard => "Ćwiczenie polega na rozpoznawaniu przewrotów akordów septymowych. Na tym poziomie tempo będzie szybkie, a dźwięki akordu będą zwykle pojawiać się w różnej kolejności"
-      case DualInterval => "Ćwiczenie polega na określeniu interwałów melodycznych oraz harmonicznych pomiędzy 4 dźwiękami (melodyczny górny oraz dolny, a także harmoniczny pierwszy oraz drugi)"
+      case DualInterval => "Ćwiczenie polega na określeniu 2 interwałów melodycznych granych w tym samym czasie (jeden górny oraz jeden dolny)"
       case SingleIntervalEasyFirst => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie wolnym"
       case SingleIntervalMediumFirst => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybszym"
       case SingleIntervalHardFirst => "Ćwiczenie polega na rozpoznawaniu interwałów prostych w obrębie jednej oktawy, które grane są melodycznie lub harmonicznie. Interwały będą grane w tempie szybkim"
