@@ -16,15 +16,15 @@ case class DualIntervalExercise() extends Exercise {
   val secondInterval: (Note, Note) = generateInterval(intervalNum(1), firstInterval._1 :: firstInterval._2:: Nil)
   val track:Track = generateTrack()
 
-  override def getAnswers: mutable.Map[String,List[Answer]] = {
+  override def getAnswers: mutable.LinkedHashMap[String,List[Answer]] = {
     import IntervalAnswer._
     if(firstInterval._1.octave > secondInterval._1.octave ||
       (firstInterval._1.octave == secondInterval._1.octave && firstInterval._1.note > secondInterval._1.note)) {
-      val answers = mutable.Map(ANSWER_TOP_NAME -> generateAnswersSet(intervalNum.head, 12))
+      val answers = mutable.LinkedHashMap(ANSWER_TOP_NAME -> generateAnswersSet(intervalNum.head, 12))
       answers.put(ANSWER_BOTTOM_NAME, generateAnswersSet(intervalNum(1), 12))
       answers
     } else {
-      val answer = mutable.Map(ANSWER_TOP_NAME -> generateAnswersSet(intervalNum(1), 12))
+      val answer = mutable.LinkedHashMap(ANSWER_TOP_NAME -> generateAnswersSet(intervalNum(1), 12))
       answer.put(ANSWER_BOTTOM_NAME, generateAnswersSet(intervalNum.head, 12))
       answer
     }

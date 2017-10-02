@@ -23,9 +23,9 @@ class BaseSquareIntervalExercise() extends Exercise {
     * if the set of right answers is correct (ex. answers are swapped). Every answer has a field isCorrect which specifies which
     * answer is the correct one.
     */
-  override def getAnswers: mutable.Map[String, List[Answer]] = {
+  override def getAnswers: mutable.LinkedHashMap[String, List[Answer]] = {
     import IntervalAnswer._
-    val answers = mutable.Map(ANSWER_HARMONIC_FIRST_NAME -> generateAnswersSet(harmonicIntervalNum.head, 12))
+    val answers = mutable.LinkedHashMap(ANSWER_HARMONIC_FIRST_NAME -> generateAnswersSet(harmonicIntervalNum.head, 12))
     answers.put(ANSWER_HARMONIC_SECOND_NAME, generateAnswersSet(harmonicIntervalNum(1), 12))
     if(firstInterval._1.octave > secondInterval._1.octave) {
       answers.put(ANSWER_TOP_NAME, generateAnswersSet(melodicIntervalNum.head, 12))

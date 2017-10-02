@@ -24,7 +24,7 @@ class SingleIntervalExercise(val difficultyLevel:Int) extends Exercise{
     * if the set of right answers is correct (ex. answers are swapped). Every answer has a field isCorrect which specifies which
     * answer is the correct one.
     */
-  override def getAnswers: mutable.Map[String, List[Answer]] = mutable.Map(SingleIntervalExercise.ANSWER ->
+  override def getAnswers: mutable.LinkedHashMap[String, List[Answer]] = mutable.LinkedHashMap(SingleIntervalExercise.ANSWER ->
     (if(difficultyLevel <= 2) IntervalAnswer.generateAnswersSet(intervalNum, 12) else IntervalAnswer.generateAnswersSet(intervalNum, 24)))
 
   private def generateInterval: (Note,Note) = {
